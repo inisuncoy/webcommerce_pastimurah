@@ -19,13 +19,6 @@
     <div class="hidden w-full h-screen bg-black bg-opacity-70" id="navbarModal">
         <div class="bg-white">
             <div class="flex flex-col font-bold text-black">
-                <a href="/profile" class="pt-5 pb-5">
-                    <div class="flex items-center justify-center gap-x-4">
-                        <img src={{ url('/assets/images/profile1.png') }} class="object-contain rounded-full w-14 h-14" alt="">
-                        <div class="">
-                            <p>Hello there!</p>
-                        </div>
-                    </div>
                 </li>
                 <a href="/" class="flex justify-center w-full py-2 border-y">
                     <p class="text-md">Beranda</p>
