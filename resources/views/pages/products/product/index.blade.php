@@ -25,7 +25,7 @@
                             <div class="flex flex-col md:w-full lg:w-2/6 gap-y-4 ">
                                 {{-- Image Preview --}}
                                 <div class="flex justify-center">
-                                    <  <img src={{"https://api.andamantau.com/".($umkm_all_detail['product']['image'])}} alt=""class="object-cover rounded-md md:w-full lg:w-72 h-72">
+                                  <img src={{"https://api.andamantau.com/".($umkm_all_detail['product']['image'])}} alt=""class="object-cover rounded-md md:w-full lg:w-72 h-72">
                                 </div>
                                 <div class="flex justify-center px-2 gap-x-2">
                                 {{-- @foreach ($umkm_all_details['images'] as $image)
@@ -66,7 +66,7 @@
                                         </a>
                                 </div>
                             </div>
-                        </div> q
+                        </div> 
                     </div>
                     <div class="col-span-2 lg:col-span-1 ">
                         <div class="w-full h-full bg-white border-2 rounded-lg">
