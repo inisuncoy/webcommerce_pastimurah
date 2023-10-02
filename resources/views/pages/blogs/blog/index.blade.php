@@ -1,11 +1,11 @@
 @extends('layouts.main.index')
 
 @section('pages')
-<div class="flex mx-5 pt-5 gap-y-10 bg-[#FFFFFF] flex-col px-20 pb-20">
+<div class="flex mx-5 pt-5 gap-y-10 bg-[#FFFFFF] flex-col px-5 md:px-20 pb-20">
     <div class="text-[#89B441] text-[18px] pt-5 font-semibold flex items-center gap-x-2">
         <a href={{ url()->previous() }}>< Kembali</a>
     </div>
-    <div class="flex gap-x-10">
+    <div class="flex flex-col md:flex-row md:gap-x-10">
         <div class="flex flex-col gap-y-5 w-[200px]">
             <div class="flex">
             {{-- <div class="bg-[#FAF8F3] border border-black flex flex-col p-2 text-center gap-y-2 rounded-lg">
@@ -21,7 +21,7 @@
         <div class="flex flex-col w-full gap-y-10">
             <div class="flex gap-x-5">
                 <div class="grow">
-                <img src={{ "https://api.andamantau.com/".$news['image'] }} class="w-[800px] h-[411px] object-cover" alt="">
+                <img src={{ "https://api.andamantau.com/".$news['image'] }} class="w-full h-[411px] object-cover" alt="">
                 </div>
                 <div class="flex flex-col gap-y-5">
                 {{-- <div class="">
