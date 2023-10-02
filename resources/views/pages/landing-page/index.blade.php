@@ -15,7 +15,7 @@
             <a href="/sellers/{{ $umkm["slug"] }}" class="bg-white rounded-lg drop-shadow-lg">
                 <div class="flex flex-col items-center justify-center pb-10 gap-y-4">
                     <div class="flex items-center justify-center">
-                    <img src={{"https://api.andamantau.com/".$umkm["umkm_image"] }} alt="product" class="object-cover w-96 aspect-square"/>
+                        <img src={{"https://api.andamantau.com/".$umkm["umkm_image"] }} alt="product" class="object-cover w-full h-32 aspect-square"/>
                     </div>
                     <div class="text-center">
                         <h1 class="text-[20px] font-[400]">{{ $umkm["umkm_name"] }}</h1>
@@ -40,7 +40,9 @@
 
                     <div class="flex flex-col pt-4 gap-y-2">
                         <h1 class="font-[700] text-[18px]">{{ $new["title"] }}</h1>
-                        <p class="font-[400] text-[14px] text-[#696969] line-clamp-3"> {{ $new["content"] }}</p>
+                        <p class="font-[400] text-[14px] text-[#696969] line-clamp-3 leading-7 my-4">
+                            {{ Str::limit($new["content"], 100) }}
+                        </p>
                         {{-- <p class="font-[500] text-[14px] ">{{ \Carbon\Carbon::createFromFormat('d/m/Y', $new['date'])->format('d F Y') }}</p> --}}
                         <div class="flex items-center justify-end mr-3">
                             <div  class="text-[#0645AD] mb-1">Baca Selengkapnya</div>
