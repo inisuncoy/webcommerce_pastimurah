@@ -13,26 +13,22 @@ class BlogsController extends Controller
      */
     public function index(Request $request)
     {
-        // $sellers = config("sellers");
-
-        // return view('pages.blogs.index', [
-        //     "sellers" => $sellers
-        // ]);
+        
 
         $apiBaseUrl = 'https://api.andamantau.com/api/w/popular-umkm';
         $yourToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5hbmRhbWFudGF1LmNvbS9wdWJsaWNfaHRtbC9hcGkvbG9naW4iLCJpYXQiOjE2OTUxMjU5NTcsImV4cCI6MTY5NTEyOTU1NywibmJmIjoxNjk1MTI1OTU3LCJqdGkiOiIwcmdONVNvaE5XMUpPZVV4Iiwic3ViIjoiNSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.VKsvsR0bqSV_yL4rSNhkqtto1Tn9mfsoImEdcF4IlAI';
-        // $sellers = config("sellers");
+    
         $client = new Client();
-        // dd('test');
+       
         try {
-            // dd('test2');
+            
             $response = $client->get($apiBaseUrl, [
                 'headers' => [
                     'Authorization' => 'Bearer ' . $yourToken,
                     'Content-Type' => 'application/json',
                 ],
             ]);
-
+            
             $responseNews = $client->get('https://api.andamantau.com/api/w/latest-news', [
                 'headers' => [
                     'Content-Type' => 'application/json',
@@ -127,11 +123,50 @@ class BlogsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function Oldest_News(Request $request)
+{
+    $sortingOption = $request->input('sorting_option');
+
+    $client = new Client();
+    
+    if ($sortingOption === 'terlama') {
+        $responseNews = $client->get('https://api.andamantau.com/api/w/oldest-news', [
+            'headers' => [
+                'Content-Type' => 'application/json',
+            ],
+        ]);
+
+        
+
+        if ($responseNews->getStatusCode() === 200) {
+            $responseNewsData = json_decode($responseNews->getBody(), true);
+            
+            return view('pages.blogs.index', [
+                'news' => $responseNewsData['data'],
+            ]);
+        } else {
+            return abort(404);
+        }
     }
-   
+
+    if ($sortingOption === 'terbaru') {
+        $responseNews = $client->get('https://api.andamantau.com/api/w/latest-news', [
+            'headers' => [
+                'Content-Type' => 'application/json',
+            ],
+        ]);
+        if ($responseNews->getStatusCode() === 200) {
+            $responseNewsData = json_decode($responseNews->getBody(), true);
+            
+            return view('pages.blogs.index', [
+                'news' => $responseNewsData['data'],
+            ]);
+        } else {
+            return abort(404);
+        }
+
+    }
+}
 
 
     /**

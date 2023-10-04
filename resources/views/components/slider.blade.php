@@ -1,29 +1,26 @@
-<div id="default-carousel" class="relative w-full h-[500px] pt-10 pb-12 md:py-24 overflow-hidden" data-carousel="slide">
+{{-- {{dd($carousel_data)}} --}}
+{{-- @foreach ($carousel_data as $data) 
+< --}}
+ <div id="default-carousel" class="relative w-full h-[500px] pt-8 pb-12 md:py-24 " data-carousel="slide"> 
     <!-- Carousel wrapper -->
-    <div class="relative h-56 rounded-lg md:h-96">
+    <div class="relative h-56 rounded-lg md:h-96"> 
          <!-- Item 1 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <div class="flex flex-col justify-around md:flex-row">
                 <div class="text-[20px] md:text-[42px] gap-y-10 text-black ">
-                    <h1 class="font-bold">Highlight News / Promo / UMKM</h1>
+                    <h1 class="font-bold">{{$carousel_data[0]['title']}}</h1>
                     <p class="font-[400] my-10 text-[12px] md:text-[22px]">
-                        Buruan dibeli sebelum kehabisan!!! <br/>
-                        Promo hanya hingga bulan Januari 2024  <br/>
-                        Tunggu apalagi langsung saja klik tombol  <br/>
-                        “Beli” di bawah ini!
+                        {{$carousel_data[0]['description']}}
                     </p>
                     <button class="font-bold text-white text-[12px] md:text-[20px] py-2 px-14 rounded-md bg-[#89B53D] hidden md:block">
                         Beli
                     </button>
                 </div>
                 <div class="flex items-center justify-end gap-x-8">
-                    <img src={{ url('assets/images/product1.png') }} alt="product" class="w-[70px] h-[70px] object-contain md:w-[200px] md:h-[200px]">
+                    <img src={{ url("https://api.andamantau.com/".$carousel_data[0]['image']) }} alt="product" class="w-[70px] h-[70px] object-contain md:w-[200px] md:h-[200px]">
                     <div class="text-black">
-                        <h1 class="font-bold text-[20px] md:text-[24px] ">Promo Beli 2 gratis 1</h1>
-                        <p class="font-[400] text-[12px] md:text-[20px]">Setiap pembelian 2 beras <br/>
-                            Maknyuss 5kg, Gratis 1 <br/>
-                            beras Maknyuss 5kg
-                        </p>
+                        <h1 class="font-bold text-[20px] md:text-[24px] ">{{$carousel_data[0]['image_title']}}</h1>
+                        <p class="font-[400] text-[12px] md:text-[20px]"> {{$carousel_data[0]['image_promo']}} </p>
                     </div>
                 </div>
                 <div class="flex justify-center pt-10 md:hidden">
@@ -32,30 +29,25 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> 
+
         <!-- Item 2 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <div class="flex flex-col justify-around md:flex-row">
                 <div class="text-[20px] md:text-[42px] gap-y-10 text-black ">
-                    <h1 class="font-bold">Highlight News / Promo / UMKM</h1>
+                    <h1 class="font-bold">{{$carousel_data[1]['title']}}</h1>
                     <p class="font-[400] my-10 text-[12px] md:text-[22px]">
-                        Buruan dibeli sebelum kehabisan!!! <br/>
-                        Promo hanya hingga bulan Januari 2024  <br/>
-                        Tunggu apalagi langsung saja klik tombol  <br/>
-                        “Beli” di bawah ini!
+                        {{$carousel_data[1]['description']}}
                     </p>
                     <button class="font-bold text-white text-[12px] md:text-[20px] py-2 px-14 rounded-md bg-[#89B53D] hidden md:block">
                         Beli
                     </button>
                 </div>
                 <div class="flex items-center justify-end gap-x-8">
-                    <img src={{ url('assets/images/product1.png') }} alt="product" class="w-[70px] h-[70px] object-contain md:w-[200px] md:h-[200px]">
+                    <img src={{ url("https://api.andamantau.com/".$carousel_data[1]['image']) }} alt="product" class="w-[70px] h-[70px] object-contain md:w-[200px] md:h-[200px]">
                     <div class="text-black">
-                        <h1 class="font-bold text-[20px] md:text-[24px] ">Promo Beli 2 gratis 1</h1>
-                        <p class="font-[400] text-[12px] md:text-[20px]">Setiap pembelian 2 beras <br/>
-                            Maknyuss 5kg, Gratis 1 <br/>
-                            beras Maknyuss 5kg
-                        </p>
+                        <h1 class="font-bold text-[20px] md:text-[24px] ">{{$carousel_data[1]['image_title']}}</h1>
+                        <p class="font-[400] text-[12px] md:text-[20px]"> {{$carousel_data[1]['image_promo']}} </p>
                     </div>
                 </div>
                 <div class="flex justify-center pt-10 md:hidden">
@@ -64,30 +56,24 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> 
         <!-- Item 3 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <div class="flex flex-col justify-around md:flex-row">
                 <div class="text-[20px] md:text-[42px] gap-y-10 text-black ">
-                    <h1 class="font-bold">Highlight News / Promo / UMKM</h1>
+                    <h1 class="font-bold">{{$carousel_data[2]['title']}}</h1>
                     <p class="font-[400] my-10 text-[12px] md:text-[22px]">
-                        Buruan dibeli sebelum kehabisan!!! <br/>
-                        Promo hanya hingga bulan Januari 2024  <br/>
-                        Tunggu apalagi langsung saja klik tombol  <br/>
-                        “Beli” di bawah ini!
+                        {{$carousel_data[2]['description']}}
                     </p>
                     <button class="font-bold text-white text-[12px] md:text-[20px] py-2 px-14 rounded-md bg-[#89B53D] hidden md:block">
                         Beli
                     </button>
                 </div>
                 <div class="flex items-center justify-end gap-x-8">
-                    <img src={{ url('assets/images/product1.png') }} alt="product" class="w-[70px] h-[70px] object-contain md:w-[200px] md:h-[200px]">
+                    <img src={{ url("https://api.andamantau.com/".$carousel_data[2]['image']) }} alt="product" class="w-[70px] h-[70px] object-contain md:w-[200px] md:h-[200px]">
                     <div class="text-black">
-                        <h1 class="font-bold text-[20px] md:text-[24px] ">Promo Beli 2 gratis 1</h1>
-                        <p class="font-[400] text-[12px] md:text-[20px]">Setiap pembelian 2 beras <br/>
-                            Maknyuss 5kg, Gratis 1 <br/>
-                            beras Maknyuss 5kg
-                        </p>
+                        <h1 class="font-bold text-[20px] md:text-[24px] ">{{$carousel_data[2]['image_title']}}</h1>
+                        <p class="font-[400] text-[12px] md:text-[20px]"> {{$carousel_data[2]['image_promo']}} </p>
                     </div>
                 </div>
                 <div class="flex justify-center pt-10 md:hidden">
@@ -96,30 +82,24 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> 
         <!-- Item 4 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <div class="flex flex-col justify-around md:flex-row">
                 <div class="text-[20px] md:text-[42px] gap-y-10 text-black ">
-                    <h1 class="font-bold">Highlight News / Promo / UMKM</h1>
+                    <h1 class="font-bold">{{$carousel_data[3]['title']}}</h1>
                     <p class="font-[400] my-10 text-[12px] md:text-[22px]">
-                        Buruan dibeli sebelum kehabisan!!! <br/>
-                        Promo hanya hingga bulan Januari 2024  <br/>
-                        Tunggu apalagi langsung saja klik tombol  <br/>
-                        “Beli” di bawah ini!
+                        {{$carousel_data[3]['description']}}
                     </p>
                     <button class="font-bold text-white text-[12px] md:text-[20px] py-2 px-14 rounded-md bg-[#89B53D] hidden md:block">
                         Beli
                     </button>
                 </div>
                 <div class="flex items-center justify-end gap-x-8">
-                    <img src={{ url('assets/images/product1.png') }} alt="product" class="w-[70px] h-[70px] object-contain md:w-[200px] md:h-[200px]">
+                    <img src={{ url("https://api.andamantau.com/".$carousel_data[3]['image']) }} alt="product" class="w-[70px] h-[70px] object-contain md:w-[200px] md:h-[200px]">
                     <div class="text-black">
-                        <h1 class="font-bold text-[20px] md:text-[24px] ">Promo Beli 2 gratis 1</h1>
-                        <p class="font-[400] text-[12px] md:text-[20px]">Setiap pembelian 2 beras <br/>
-                            Maknyuss 5kg, Gratis 1 <br/>
-                            beras Maknyuss 5kg
-                        </p>
+                        <h1 class="font-bold text-[20px] md:text-[24px] ">{{$carousel_data[3]['image_title']}}</h1>
+                        <p class="font-[400] text-[12px] md:text-[20px]"> {{$carousel_data[3]['image_promo']}} </p>
                     </div>
                 </div>
                 <div class="flex justify-center pt-10 md:hidden">
@@ -128,30 +108,24 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> 
         <!-- Item 5 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <div class="flex flex-col justify-around md:flex-row">
                 <div class="text-[20px] md:text-[42px] gap-y-10 text-black ">
-                    <h1 class="font-bold">Highlight News / Promo / UMKM</h1>
+                    <h1 class="font-bold">{{$carousel_data[4]['title']}}</h1>
                     <p class="font-[400] my-10 text-[12px] md:text-[22px]">
-                        Buruan dibeli sebelum kehabisan!!! <br/>
-                        Promo hanya hingga bulan Januari 2024  <br/>
-                        Tunggu apalagi langsung saja klik tombol  <br/>
-                        “Beli” di bawah ini!
+                        {{$carousel_data[4]['description']}}
                     </p>
                     <button class="font-bold text-white text-[12px] md:text-[20px] py-2 px-14 rounded-md bg-[#89B53D] hidden md:block">
                         Beli
                     </button>
                 </div>
                 <div class="flex items-center justify-end gap-x-8">
-                    <img src={{ url('assets/images/product1.png') }} alt="product" class="w-[70px] h-[70px] object-contain md:w-[200px] md:h-[200px]">
+                    <img src={{ url("https://api.andamantau.com/".$carousel_data[4]['image']) }} alt="product" class="w-[70px] h-[70px] object-contain md:w-[200px] md:h-[200px]">
                     <div class="text-black">
-                        <h1 class="font-bold text-[20px] md:text-[24px] ">Promo Beli 2 gratis 1</h1>
-                        <p class="font-[400] text-[12px] md:text-[20px]">Setiap pembelian 2 beras <br/>
-                            Maknyuss 5kg, Gratis 1 <br/>
-                            beras Maknyuss 5kg
-                        </p>
+                        <h1 class="font-bold text-[20px] md:text-[24px] ">{{$carousel_data[4]['image_title']}}</h1>
+                        <p class="font-[400] text-[12px] md:text-[20px]"> {{$carousel_data[4]['image_promo']}} </p>
                     </div>
                 </div>
                 <div class="flex justify-center pt-10 md:hidden">
@@ -160,8 +134,9 @@
                     </button>
                 </div>
             </div>
-        </div>
-    </div>
+        </div> 
+       
+        
     <!-- Slider indicators -->
     <div class="absolute bottom-0 z-30 flex space-x-3 -translate-x-1/2 left-1/2">
         <button type="button" class="w-3 h-3 rounded-full " aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
@@ -179,6 +154,8 @@
             <span class="sr-only">Previous</span>
         </span>
     </button>
+   
+
     <button type="button" class="absolute top-0 right-0 z-30 items-center justify-center hidden h-full px-4 cursor-pointer md:flex group focus:outline-none" data-carousel-next>
         <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#89B53D]  group-focus:ring-4 group-focus:ring-gray-800/70 group-focus:outline-none">
             <svg width="20" height="27" viewBox="0 0 37 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -187,4 +164,9 @@
             <span class="sr-only">Next</span>
         </span>
     </button>
-</div>
+  
+
+ </div>
+
+
+

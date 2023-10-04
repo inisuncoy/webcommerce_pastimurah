@@ -6,20 +6,17 @@
         <h1 class="font-bold text-[22px] md:text-[25px]">Blog UMKM Terkini</h1>
         <div class="flex items-center gap-x-2">
             <div class="items-center hidden gap-x-2 md:flex">
+                <form id="sortingForm" method="GET" action=" /blogs/filter">
                 <h1 class="font-bold">Urutkan: </h1>
-                <select name="" class="bg-white text-black pl-4 rounded-md w-full border-[#89B53D] border font-[500]" id="">
-                    <option value="" selected>Semua</option>
-                    <option value="">Paling populer</option>
-                    <option value="">Anyaman</option>
-                    <option value="">Terbaru</option>
-                    <option value="">Buah</option>
-                    <option value="">Burung</option>
-                    <option value="">Beras Gula</option>
-                    <option value="">Jagung</option>
-                    <option value="">Kopi Rengginang</option>
-                    <option value="">Renggining</option>
+                <select id="sortingSelect" name="sorting" class="bg-white text-black pl-4 rounded-md w-full border-[#89B53D] border font-[500]">
+                    <option value="terbaru" selected>Semua</option>
+                    <option value="terlama">Terlama</option>                 
                 </select>
             </div>
+        <input type="hidden" name="sorting_option" value="terlama">
+        <button type="submit" style="display: none;"></button>
+        </form>
+
             <div class="mr-3 md:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"/></svg>
             </div>
@@ -51,3 +48,27 @@
 
 </div>
 @endsection
+@push('scripts')
+<script>
+
+function saveSelectedOption(option) {
+    localStorage.setItem('selectedOption', option);
+}
+
+// Function to load the selected option from local storage
+function loadSelectedOption() {
+    return localStorage.getItem('selectedOption') || 'terbaru'; // Default to 'terbaru' if not found
+}
+
+// Set the initial selected option based on local storage
+document.getElementById('sortingSelect').value = loadSelectedOption();
+
+// Add an event listener to the select element
+document.getElementById('sortingSelect').addEventListener('change', function() {
+    var selectedValue = this.value;
+    document.querySelector('input[name="sorting_option"]').value = selectedValue;
+    saveSelectedOption(selectedValue); // Save the selected option to local storage
+    document.getElementById('sortingForm').submit();
+});
+    </script>
+    @endpush

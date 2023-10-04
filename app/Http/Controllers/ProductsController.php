@@ -50,28 +50,7 @@ class ProductsController extends Controller
                 'body' =>  json_encode($requestDataProduct),
             ]);
 
-        //     $responseAdd = $client->post('https://api.andamantau.com/api/w/transaction'
-        //     , [
-        //     'headers' => [
-        //         'Authorization' => 'Bearer ' . $yourToken,
-        //         'Content-Type' => 'application/json',
-        //     ],
-
-            
-            
-        // ]);
-
-        //  $responseProducttoTran = $client->post('https://api.andamantau.com/api/w/transaction/product'
-        //     , [
-        //     'headers' => [
-        //         'Authorization' => 'Bearer ' . $yourToken,
-        //         'Content-Type' => 'application/json',
-        //     ],]);
-
-
-
-            // dd( $responseUMKMPAll);
-            // dd($responseUMKMPAll);
+       
 
             $responseBodyDetail = $responseUMKMPAll->getBody();
            
