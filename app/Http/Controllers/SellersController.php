@@ -6,13 +6,17 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 
+
 class SellersController extends Controller
+
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
+        
+
         $data = [
             'query' => $request->input('query'),
 
@@ -106,7 +110,8 @@ class SellersController extends Controller
 
     
     public function filter(Request $request)
-    {    $yourToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5hbmRhbWFudGF1LmNvbS9hcGkvbG9naW4iLCJpYXQiOjE2OTU5MTUyOTYsImV4cCI6MTY5NjUyMDA5NiwibmJmIjoxNjk1OTE1Mjk2LCJqdGkiOiJIOFlIWUNwZkpxWGJKMG96Iiwic3ViIjoiNSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.Oof2r4AqxMOvSMgzMW_JzDSiTsSfESDa538O5tlr6vI";
+    {    
+        $yourToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5hbmRhbWFudGF1LmNvbS9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNjk2MjI3NTQyLCJleHAiOjE2OTY4MzIzNDIsIm5iZiI6MTY5NjIyNzU0MiwianRpIjoiNWpQNlZ5M2prN1FSMkpDYyIsInN1YiI6IjEwIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.FM4EGFRGS91QkLTHdJL-zXpNRIy6_Iz9If6BwhdsOME";
         $client = new Client();
        
         $Kota = $request->input('kota');
@@ -121,7 +126,7 @@ class SellersController extends Controller
           
 
             $response = $client->get(
-                'https://api.andamantau.com/api/umkm/filter/?City=&Province=',
+                'https://api.andamantau.com/api/umkm/filter/?Province=',
                 [
                     'headers' => [
                         'Content-Type' => 'application/json',
@@ -131,7 +136,8 @@ class SellersController extends Controller
                     
                 ]
             );
-
+            
+            // dd($response);
            
 
             if ($response->getStatusCode() === 200) {
@@ -143,7 +149,7 @@ class SellersController extends Controller
 
                 ]);
             } else {
-                return abort(404);
+                return view('pages.404.index');
             }
         } catch (RequestException $e) {
             return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);

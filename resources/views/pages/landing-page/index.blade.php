@@ -1,17 +1,17 @@
 @extends('layouts.main.index')
-
 @section('pages')
     <div class="-mt-4 md:pt-1.5 relative z-0">
         <img src={{ url("assets/images/billboard.png") }} alt="billboard" class="absolute w-full h-[530px] md:h-[570px]">
-        <div class="px-5">
+        <div class="px-5 overflow-hidden">
+            
             @include("components.slider")
         </div>
     </div>
-    <div class="px-5 pt-40 md:px-20">
+    <div class="px-5 pt-40 md:px-20 relative w-full">
         <h1 class="font-bold text-[25px] md:text-[30px] pb-8 text-center md:text-left">Popular List UMKM</h1>
         <div class="grid grid-cols-2 gap-4 md:gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
         @foreach ($umkm_data as $umkm)
-
+            {{-- {{dd($umkm)}} --}}
             <a href="/sellers/{{ $umkm["slug"] }}" class="bg-white rounded-lg drop-shadow-lg">
                 <div class="flex flex-col items-center justify-center pb-10 gap-y-4">
                     <div class="flex items-center justify-center">
