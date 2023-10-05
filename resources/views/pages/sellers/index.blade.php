@@ -18,18 +18,18 @@
                 <label for="">Semua</label>
             </div> --}}
             <div class="flex flex-col font-normal gap-y-2">
-                <div class="flex items-center gap-x-5">
+                {{-- <div class="flex items-center gap-x-5">
                     <input type="checkbox" name="province[]" id="DKI Jakarta" value="DKI-Jakarta" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
                     <label for="DKI Jakarta">DKI Jakarta</label>
-                </div>
-                <div class="flex items-center gap-x-5">
+                </div> --}}
+                {{-- <div class="flex items-center gap-x-5">
                     <input type="checkbox" name="province[]" id="Sulawesi Selatan" value="Sulawesi-Selatan" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
                     <label for="Sulawesi Selatan">Sulawesi Selatan</label>
-                </div>
+                </div> --}}
                 
-                <div class="font-normal text-[#89B53D] pt-3">
+                {{-- <div class="font-normal text-[#89B53D] pt-3">
                     <button id="openModalButton" onclick="openModal()" data-modal-data='https://drive.google.com/file/d/1jIYUGnLryU_yGtTn7qI-Nt6EnW2mVFwp/preview' type="button">Lihat Selengkapnya</button>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
