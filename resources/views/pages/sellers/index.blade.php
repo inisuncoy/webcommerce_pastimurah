@@ -1,6 +1,7 @@
 @extends('layouts.main.index')
 
 @section('pages')
+
 {{-- Link --}}
 <div class="text-[#89B441] text-[18px] px-5 md:px-20  md:pt-10 font-semibold flex items-center gap-x-2">
     <h1>Toko</h1>
@@ -8,31 +9,31 @@
 {{-- Content --}}
 <div class="grid grid-cols-1 px-5 pt-5 md:px-20 md:grid-cols-5 gap-x-10">
     <div class="flex-col hidden md:flex md:cols-span-1 gap-y-5">
-        <h1 class="font-bold text-[24px]">Filter Lokasi</h1>
+        {{-- <h1 class="font-bold text-[24px]">Filter Lokasi</h1> --}}
         <div class="flex flex-col p-5 bg-white rounded-lg shadow-lg gap-y-7">
             <div class="flex items-center font-normal gap-x-5">
-                <input type="checkbox" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                <label for="">Semua</label>
+                {{-- <input type="checkbox" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
+                <label for="">Semua</label> --}}
             </div>
             <div class="flex flex-col font-normal gap-y-2">
                 <div class="flex items-center gap-x-5">
-                    <input type="checkbox" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                    <label for="">Bogor</label>
+                    {{-- <input type="checkbox" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
+                    <label for="">Bogor</label> --}}
                 </div>
                 <div class="flex items-center gap-x-5">
-                    <input type="checkbox" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                    <label for="">Padang</label>
+                    {{-- <input type="checkbox" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
+                    <label for="">Padang</label> --}}
                 </div>
                 <div class="flex items-center gap-x-5">
-                    <input type="checkbox" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                    <label for="">Medan</label>
+                    {{-- <input type="checkbox" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
+                    <label for="">Medan</label> --}}
                 </div>
                 <div class="flex items-center gap-x-5">
-                    <input type="checkbox" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                    <label for="">Pekanbaru</label>
+                    {{-- <input type="checkbox" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
+                    <label for="">Pekanbaru</label> --}}
                 </div>
                 <div class="font-normal text-[#89B53D] pt-3">
-                    <button id="openModalButton" onclick="openModal()" data-modal-data='https://drive.google.com/file/d/1jIYUGnLryU_yGtTn7qI-Nt6EnW2mVFwp/preview'>Lihat Selengkapnya</button>
+                    {{-- <button id="openModalButton" onclick="openModal()" data-modal-data='https://drive.google.com/file/d/1jIYUGnLryU_yGtTn7qI-Nt6EnW2mVFwp/preview'>Lihat Selengkapnya</button> --}}
                 </div>
             </div>
         </div>
@@ -40,7 +41,7 @@
     <div class="flex flex-col md:col-span-4 gap-y-6">
         <div class="relative flex md:justify-end">
             
-        <form action="/sellers/search" method="POST" class="w-full"> 
+        <form action="/toko/search" method="POST" class="w-full"> 
             @csrf
             <input type="text"name="query" id="query" class="w-full rounded-lg text-[15px] md:text-[17px] py-2.5 pl-12 md:pl-14 md:py-3" placeholder="Cari Nama UMKM" value="{{ old('query') }}">
         </form> 
@@ -95,14 +96,14 @@
         </div> --}}
         <div class="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-12 lg:gap-y-14">
             @foreach ($umkm_data as $seller)
-            <a href="/sellers/{{ $seller["slug"] }}" class="bg-white rounded-lg drop-shadow-lg">
+            <a href="/toko/{{ $seller["slug"] }}" class="bg-white rounded-lg drop-shadow-lg">
                 <div class="flex flex-col items-center justify-center pb-10 gap-y-4">
                     <div class="flex items-center justify-center">
-                    <img src={{ ("https://api.andamantau.com/".$seller["umkm_image"]) }} alt="product" class="object-cover w-96 aspect-square"/>
+                    <img src={{ !empty($seller['umkm_image']) ? 'https://api.andamantau.com/' . $seller['umkm_image'] : 'assets/images/noimage.png'}} alt="product" class="object-cover w-96 aspect-square"/>
                     </div>
                     <div class="text-center">
                         <h1 class="text-[20px] font-[400]">{{ $seller["umkm_name"] }}</h1>
-                        {{-- <p class="font-[400] text-[14px]">{{ $seller["province"] }}</p> --}}
+                        <p class="font-[400] text-[14px]">{{ $seller["city"].  ", " . $seller['province']}}</p>
                     </div>
                 </div>
             </a>
@@ -134,7 +135,7 @@
                         <span class="mb-1">&times;</span>
                     </div>
                 </div>
-                <form id="myForm" action="/sellers/filter" method="GET">
+                <form id="myForm" action="/toko/filter" method="GET">
                     @csrf
                 <div class="grid w-full grid-cols-3 p-5">
                     <div class="flex flex-col gap-y-3">
@@ -396,15 +397,14 @@
     });
 
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    
-    function saveCheckboxStates() {
+
+function saveCheckboxStates() {
   const checkboxData = {};
   checkboxes.forEach(checkbox => {
     checkboxData[checkbox.id] = checkbox.checked;
   });
   localStorage.setItem('checkboxData', JSON.stringify(checkboxData));
 }
-
 
 function loadCheckboxStates() {
   const savedData = localStorage.getItem('checkboxData');
@@ -413,11 +413,13 @@ function loadCheckboxStates() {
     checkboxes.forEach(checkbox => {
       if (checkboxData.hasOwnProperty(checkbox.id)) {
         checkbox.checked = checkboxData[checkbox.id];
+      } else {
+        
+        checkbox.checked = false;
       }
     });
   }
 }
-
 
 checkboxes.forEach(checkbox => {
   checkbox.addEventListener('click', () => {
@@ -426,8 +428,9 @@ checkboxes.forEach(checkbox => {
   });
 });
 
-
 loadCheckboxStates();
-
+window.addEventListener('beforeunload', () => {
+  localStorage.removeItem('checkboxData');
+});
 </script>
 @endpush

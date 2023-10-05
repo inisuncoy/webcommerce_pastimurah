@@ -41,7 +41,7 @@ class CarouselrController extends Controller
 
 
         } catch (RequestException $e) {
-            return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
+            return view('pages.404.index');
         }
 
 

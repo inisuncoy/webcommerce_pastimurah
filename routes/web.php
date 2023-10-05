@@ -29,17 +29,18 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/buy-now', [BuyNowController::class, 'index']);
 
 Route::get('/checkout', [CheckoutController::class, 'index']);
-Route::get('/sellers/filter', [SellersController::class, 'filter']);
-Route::get('/sellers', [SellersController::class, 'index']);
-Route::get('/sellers/{slug}', [SellersController::class, 'show']);
-Route::post('/sellers/search', [SellersController::class, 'SearchUMKM']);
+Route::get('/toko/filter', [SellersController::class, 'filter']);
+Route::get('/toko', [SellersController::class, 'index']);
+Route::post('/toko/search', [SellersController::class, 'SearchUMKM']);
+Route::get('/toko/{slug}', [SellersController::class, 'show']);
 
 
-Route::get('/sellers/{sellerSlug}/products/{productSlug}', [SellerProductsController::class, 'show']);
+
+Route::get('/toko/{sellerSlug}/products/{productSlug}', [SellerProductsController::class, 'show']);
 
 Route::get('/blogs', [BlogsController::class, 'index']);
 Route::get('/blogs/filter', [BlogsController::class, 'Oldest_News']);
-Route::get('/sellers/{sellerSlug}/blogs/{newSlug}', [BlogsController::class, 'show']);
+Route::get('/toko/{sellerSlug}/blogs/{newSlug}', [BlogsController::class, 'show']);
 
 Route::get('/billing', function (Request $request) {
     return view("pages.billing.index");

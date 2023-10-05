@@ -1,9 +1,11 @@
 @extends('layouts.main.index')
 
 @section('pages')
+
+
 {{-- Link --}}
 <div class="text-[#89B441] text-[18px] px-5 md:px-20 pt-10 font-semibold flex items-center gap-x-2">
-    <a href="/sellers">Toko</a>
+    <a href="/toko">Toko</a>
     <svg width="8" height="15" viewBox="0 0 8 15" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 1.32257L7 7.51612L1 13.7097" stroke="black" stroke-opacity="0.5"/>
     </svg>
@@ -15,7 +17,7 @@
     <div class="flex flex-col gap-y-10">
         <div class="md:grid items-center grid-cols-6 gap-x-10">
             <div class="col-span-3 lg:col-span-1">
-                <img src={{"https://api.andamantau.com/".($umkm_all_detail['umkm']["umkm_image"]) }} class="object-cover rounded-md w-96 aspect-square">
+                <img src={{ !empty($umkm_all_detail['umkm']['umkm_image']) ? 'https://api.andamantau.com/' . $umkm_all_detail['umkm']['umkm_image'] : asset('assets/images/noimage.png') }} alt="product" class="object-cover rounded-md w-96 aspect-square">
             </div>
             <div class="flex flex-col md:col-span-3 lg:col-span-5 gap-y-5">
                 <h1 class="font-bold text-[30px]">{{ $umkm_all_detail['umkm']["umkm_name"] }}</h1>
@@ -73,10 +75,12 @@
             @foreach ($umkm_all_detail['products'] as $product)
                 @component('components.product-card')
                     @slot('productImage')
-                    {{ "https://api.andamantau.com/".($product["product_image"]) }}
+              
+                    {{ !empty($product["product_image"]) ? 'https://api.andamantau.com/' . $product["product_image"] : asset('assets/images/noimage.png') }}
+                    
                     @endslot
                     @slot('productUrl')
-                        /sellers/{{ $umkm_all_detail['slug'] }}/products/{{ $product['slug'] }}
+                        /toko/{{ $umkm_all_detail['slug'] }}/products/{{ $product['slug'] }}
                     @endslot
                     @slot('productTitle')
                         {{ $product['product_name'] }}
@@ -106,13 +110,14 @@
         <div class="flex gap-8 pb-10 overflow-x-scroll ">
         @foreach ($umkm_all_detail['news'] as $new)
                 <div class="flex flex-col justify-center p-4 bg-white rounded-xl drop-shadow-lg min-w-[400px]">
-                <img src={{ "https://api.andamantau.com/".$new["image"] }} alt="product" class="object-cover w-full h-42 md:h-64">
+                    
+                <img src={{ !empty($new["image"]) ? 'https://api.andamantau.com/' . $new["image"]: asset('assets/images/noimage.png') }} alt="product" class="object-cover w-full h-42 md:h-64">
                     <div class="flex flex-col pt-4 gap-y-2">
                         <h1 class="font-[700] text-[18px]">{{ $new["title"] }}</h1>
                         <p class="font-[400] text-[14px] text-[#696969] line-clamp-3"> {{ $new["content"] }}</p>
                         {{-- <p class="font-[500] text-[14px] ">{{ \Carbon\Carbon::createFromFormat('d/m/Y', $new['createdAt'])->format('d F Y') }}</p> --}}
                         <div class="flex items-center justify-end">
-                            <a href="/sellers/{{ $umkm_all_detail['slug'] }}/blogs/{{ $new["title"] }}" class="text-[#0645AD] mb-1">Baca Selengkapnya</a>
+                            <a href="/toko/{{ $umkm_all_detail['slug'] }}/blogs/{{ $new["title"] }}" class="text-[#0645AD] mb-1">Baca Selengkapnya</a>
                             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12.3105 18L18.1573 12L12.3105 6" stroke="#0645AD" stroke-width="2"/>
                                 <path d="M6.46377 18L12.3105 12L6.46377 6" stroke="#0645AD" stroke-width="2"/>
@@ -124,7 +129,7 @@
         </div>
     </div>
     {{-- Lokasi --}}
-    <div class="flex flex-col gap-y-5">
+    {{-- <div class="flex flex-col gap-y-5">
         <div class="relative flex items-center py-5">
             <div class="flex-grow border-t border-black"></div>
             <span class="flex-shrink mx-4 font-bold text-[20px]">Peta Lokasi</span>
@@ -132,9 +137,9 @@
         </div>
         <div class="flex justify-center">
         {{-- <iframe src={{ $seller['maps_link'] }} class="w-full" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> --}}
+       {{-- </div>
         </div>
-        </div>
-    </div>
+    </div> --}}
 </div>
 
 @endsection

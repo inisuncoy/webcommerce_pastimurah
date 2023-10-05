@@ -52,7 +52,7 @@ class SellersController extends Controller
                 return abort(404);
             }
         } catch (RequestException $e) {
-            return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
+            return view('pages.404.index');
         }
     }
 
@@ -70,7 +70,7 @@ class SellersController extends Controller
             
         ];
 
-
+        
        
        
         $client = new Client();
@@ -113,20 +113,21 @@ class SellersController extends Controller
     {    
         $yourToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5hbmRhbWFudGF1LmNvbS9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNjk2MjI3NTQyLCJleHAiOjE2OTY4MzIzNDIsIm5iZiI6MTY5NjIyNzU0MiwianRpIjoiNWpQNlZ5M2prN1FSMkpDYyIsInN1YiI6IjEwIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.FM4EGFRGS91QkLTHdJL-zXpNRIy6_Iz9If6BwhdsOME";
         $client = new Client();
-       
+       $Kota=[];
         $Kota = $request->input('kota');
+        
+        
+        foreach ($Kota as $KotaArray) {
+            $queryParams = [
+                'kota' => $Kota,
 
-        $queryParams = [
-            'kota' => $Kota,
-          
-        ];
-        // dd($Kota);
-
+            ];
+           dd($queryParams);
         try {
           
 
             $response = $client->get(
-                'https://api.andamantau.com/api/umkm/filter/?Province=',
+                'https://api.andamantau.com/api/w/umkm/filter/?province=',
                 [
                     'headers' => [
                         'Content-Type' => 'application/json',
@@ -152,11 +153,11 @@ class SellersController extends Controller
                 return view('pages.404.index');
             }
         } catch (RequestException $e) {
-            return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
+            return view('pages.404.index');
         }
-
+    
     }
-
+    }
     /**
      * Display the specified resource.
      */
@@ -212,7 +213,7 @@ class SellersController extends Controller
                 return abort(404);
             }
         } catch (RequestException $e) {
-            return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
+            return view('pages.404.index');
         }
     }
 

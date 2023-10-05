@@ -1,139 +1,37 @@
-{{-- {{dd($carousel_data)}} --}}
-{{-- @foreach ($carousel_data as $data) 
-< --}}
- <div id="default-carousel" class="relative w-full h-[500px] pt-8 pb-12 md:py-24 " data-carousel="slide"> 
+
+ <div id="default-carousel" class="relative w-full h-[600px] md:h-[300px] lg:h-[500px] pt-8 pb-12 md:py-20 mt-0 overflow-hidden " data-carousel="slider"> 
     <!-- Carousel wrapper -->
-    <div class="relative h-56 rounded-lg md:h-96"> 
+    <div class="relative h-56 rounded-lg md:h-96 overflow-y:visible "> 
          <!-- Item 1 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <div class="flex flex-col justify-around md:flex-row">
-                <div class="text-[20px] md:text-[42px] gap-y-10 text-black ">
-                    <h1 class="font-bold">{{$carousel_data[0]['title']}}</h1>
-                    <p class="font-[400] my-10 text-[12px] md:text-[22px]">
-                        {{$carousel_data[0]['description']}}
-                    </p>
-                    <button class="font-bold text-white text-[12px] md:text-[20px] py-2 px-14 rounded-md bg-[#89B53D] hidden md:block">
-                        Beli
-                    </button>
-                </div>
-                <div class="flex items-center justify-end gap-x-8">
-                    <img src={{ url("https://api.andamantau.com/".$carousel_data[0]['image']) }} alt="product" class="w-[70px] h-[70px] object-contain md:w-[200px] md:h-[200px]">
-                    <div class="text-black">
-                        <h1 class="font-bold text-[20px] md:text-[24px] ">{{$carousel_data[0]['image_title']}}</h1>
-                        <p class="font-[400] text-[12px] md:text-[20px]"> {{$carousel_data[0]['image_promo']}} </p>
-                    </div>
-                </div>
-                <div class="flex justify-center pt-10 md:hidden">
-                    <button class="font-bold text-white text-[12px] md:text-[20px] py-2 px-14 rounded-md bg-[#89B53D] ">
-                        Beli
-                    </button>
-                </div>
-            </div>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+            <img src="/assets/images/s&k berlaku (1).png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+        </a>
         </div> 
 
         <!-- Item 2 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <div class="flex flex-col justify-around md:flex-row">
-                <div class="text-[20px] md:text-[42px] gap-y-10 text-black ">
-                    <h1 class="font-bold">{{$carousel_data[1]['title']}}</h1>
-                    <p class="font-[400] my-10 text-[12px] md:text-[22px]">
-                        {{$carousel_data[1]['description']}}
-                    </p>
-                    <button class="font-bold text-white text-[12px] md:text-[20px] py-2 px-14 rounded-md bg-[#89B53D] hidden md:block">
-                        Beli
-                    </button>
-                </div>
-                <div class="flex items-center justify-end gap-x-8">
-                    <img src={{ url("https://api.andamantau.com/".$carousel_data[1]['image']) }} alt="product" class="w-[70px] h-[70px] object-contain md:w-[200px] md:h-[200px]">
-                    <div class="text-black">
-                        <h1 class="font-bold text-[20px] md:text-[24px] ">{{$carousel_data[1]['image_title']}}</h1>
-                        <p class="font-[400] text-[12px] md:text-[20px]"> {{$carousel_data[1]['image_promo']}} </p>
-                    </div>
-                </div>
-                <div class="flex justify-center pt-10 md:hidden">
-                    <button class="font-bold text-white text-[12px] md:text-[20px] py-2 px-14 rounded-md bg-[#89B53D] ">
-                        Beli
-                    </button>
-                </div>
-            </div>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/images/s&k berlaku (2).png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+            </a>
         </div> 
         <!-- Item 3 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <div class="flex flex-col justify-around md:flex-row">
-                <div class="text-[20px] md:text-[42px] gap-y-10 text-black ">
-                    <h1 class="font-bold">{{$carousel_data[2]['title']}}</h1>
-                    <p class="font-[400] my-10 text-[12px] md:text-[22px]">
-                        {{$carousel_data[2]['description']}}
-                    </p>
-                    <button class="font-bold text-white text-[12px] md:text-[20px] py-2 px-14 rounded-md bg-[#89B53D] hidden md:block">
-                        Beli
-                    </button>
-                </div>
-                <div class="flex items-center justify-end gap-x-8">
-                    <img src={{ url("https://api.andamantau.com/".$carousel_data[2]['image']) }} alt="product" class="w-[70px] h-[70px] object-contain md:w-[200px] md:h-[200px]">
-                    <div class="text-black">
-                        <h1 class="font-bold text-[20px] md:text-[24px] ">{{$carousel_data[2]['image_title']}}</h1>
-                        <p class="font-[400] text-[12px] md:text-[20px]"> {{$carousel_data[2]['image_promo']}} </p>
-                    </div>
-                </div>
-                <div class="flex justify-center pt-10 md:hidden">
-                    <button class="font-bold text-white text-[12px] md:text-[20px] py-2 px-14 rounded-md bg-[#89B53D] ">
-                        Beli
-                    </button>
-                </div>
-            </div>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/images/s&k berlaku (1).png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+            </a>
         </div> 
         <!-- Item 4 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <div class="flex flex-col justify-around md:flex-row">
-                <div class="text-[20px] md:text-[42px] gap-y-10 text-black ">
-                    <h1 class="font-bold">{{$carousel_data[3]['title']}}</h1>
-                    <p class="font-[400] my-10 text-[12px] md:text-[22px]">
-                        {{$carousel_data[3]['description']}}
-                    </p>
-                    <button class="font-bold text-white text-[12px] md:text-[20px] py-2 px-14 rounded-md bg-[#89B53D] hidden md:block">
-                        Beli
-                    </button>
-                </div>
-                <div class="flex items-center justify-end gap-x-8">
-                    <img src={{ url("https://api.andamantau.com/".$carousel_data[3]['image']) }} alt="product" class="w-[70px] h-[70px] object-contain md:w-[200px] md:h-[200px]">
-                    <div class="text-black">
-                        <h1 class="font-bold text-[20px] md:text-[24px] ">{{$carousel_data[3]['image_title']}}</h1>
-                        <p class="font-[400] text-[12px] md:text-[20px]"> {{$carousel_data[3]['image_promo']}} </p>
-                    </div>
-                </div>
-                <div class="flex justify-center pt-10 md:hidden">
-                    <button class="font-bold text-white text-[12px] md:text-[20px] py-2 px-14 rounded-md bg-[#89B53D] ">
-                        Beli
-                    </button>
-                </div>
-            </div>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/images/s&k berlaku (2).png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+            </a>
         </div> 
         <!-- Item 5 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <div class="flex flex-col justify-around md:flex-row">
-                <div class="text-[20px] md:text-[42px] gap-y-10 text-black ">
-                    <h1 class="font-bold">{{$carousel_data[4]['title']}}</h1>
-                    <p class="font-[400] my-10 text-[12px] md:text-[22px]">
-                        {{$carousel_data[4]['description']}}
-                    </p>
-                    <button class="font-bold text-white text-[12px] md:text-[20px] py-2 px-14 rounded-md bg-[#89B53D] hidden md:block">
-                        Beli
-                    </button>
-                </div>
-                <div class="flex items-center justify-end gap-x-8">
-                    <img src={{ url("https://api.andamantau.com/".$carousel_data[4]['image']) }} alt="product" class="w-[70px] h-[70px] object-contain md:w-[200px] md:h-[200px]">
-                    <div class="text-black">
-                        <h1 class="font-bold text-[20px] md:text-[24px] ">{{$carousel_data[4]['image_title']}}</h1>
-                        <p class="font-[400] text-[12px] md:text-[20px]"> {{$carousel_data[4]['image_promo']}} </p>
-                    </div>
-                </div>
-                <div class="flex justify-center pt-10 md:hidden">
-                    <button class="font-bold text-white text-[12px] md:text-[20px] py-2 px-14 rounded-md bg-[#89B53D] ">
-                        Beli
-                    </button>
-                </div>
-            </div>
+            <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/images/s&k berlaku (1).png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+            </a>
         </div> 
        
         
