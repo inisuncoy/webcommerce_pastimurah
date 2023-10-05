@@ -26,7 +26,7 @@
                 <a href="/blogs" class="flex justify-center w-full py-2 border-b">
                     <p class="text-md">Blog</p>
                 </a>
-                <a href="/sellers" class="flex justify-center w-full py-2 border-b">
+                <a href="/toko" class="flex justify-center w-full py-2 border-b">
                     <p class="text-md">Toko</p>
                 </a>
             </div>

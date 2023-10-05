@@ -26,15 +26,21 @@
                 {{ $umkm_all_detail['umkm']["umkm_description"] }}
                 </p>
                 <div class="flex pt-4 gap-x-5">
-                    <a href="https://www.facebook.com/{{ $umkm_all_detail['umkm']['facebook'] }}" target="_blank">
-                        <img src={{ url("/assets/icons/facebook.svg") }} alt="facebook-icons" class="w-10 h-10">
-                    </a>
+                    @if ($umkm_all_detail['umkm']['facebook'] != null)      
+                        <a href="https://www.facebook.com/{{ $umkm_all_detail['umkm']['facebook'] }}" target="_blank">
+                            <img src={{ url("/assets/icons/facebook.svg") }} alt="facebook-icons" class="w-10 h-10">
+                        </a>
+                    @endif
+                    @if ($umkm_all_detail['umkm']['instagram'] != null)      
                     <a href="https://www.instagram.com/{{ $umkm_all_detail['umkm']['instagram'] }}" target="_blank">
                         <img src={{ url("/assets/icons/instagram.svg") }} alt="instagram-icons" class="w-10 h-10">
                     </a>
+                    @endif
+                    @if ($umkm_all_detail['umkm']['whatsapp'] != null)      
                     <a href="https://wa.me/62{{$umkm_all_detail['umkm']['whatsapp'] }}" target="_blank">
                         <img src={{ url("/assets/icons/whatsapp.svg") }} alt="whatsapp-icons" class="w-10 h-10">
                     </a>
+                    @endif
                 </div>
             </div>
         </div>
