@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="flex flex-col pt-4 gap-y-2">
-                        <h1 class="font-[700] text-[18px] line-clamp-2">{{ $new["title"] }}</h1>
+                        <h1 class="font-[700] text-[18px] line-clamp-2 h-[54px]">{{ $new["title"] }}</h1>
                         <p class="font-[400] text-[14px] text-[#696969] line-clamp-1 leading-7 my-4">
                             {{ Str::limit($new["content"], 100) }}
                         </p>
