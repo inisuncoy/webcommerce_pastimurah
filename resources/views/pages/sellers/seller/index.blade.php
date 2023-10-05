@@ -109,7 +109,7 @@
         </div>
         <div class="flex gap-8 pb-10 overflow-x-scroll ">
         @foreach ($umkm_all_detail['news'] as $new)
-                <div class="flex flex-col justify-center p-4 bg-white rounded-xl drop-shadow-lg min-w-[400px]">
+                <div class="flex flex-col justify-center p-4 bg-white rounded-xl drop-shadow-lg min-w-[400px] max-w-[400px]">
                     
                 <img src={{ !empty($new["image"]) ? 'https://api.andamantau.com/' . $new["image"]: asset('assets/images/noimage.png') }} alt="product" class="object-cover w-full h-42 md:h-64">
                     <div class="flex flex-col pt-4 gap-y-2">
