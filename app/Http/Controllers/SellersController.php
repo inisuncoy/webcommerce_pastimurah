@@ -15,7 +15,7 @@ class SellersController extends Controller
      */
     public function index(Request $request)
     {
-        
+
 
         $data = [
             'query' => $request->input('query'),
@@ -37,10 +37,6 @@ class SellersController extends Controller
                     'Content-Type' => 'application/json',
                 ],
             ]);
-
-
-
-
             if ($response->getStatusCode() === 200) {
                 $responseData = json_decode($response->getBody(), true);
                 return view('pages.sellers.index', [
@@ -56,41 +52,41 @@ class SellersController extends Controller
         }
     }
 
-   
+
     public function SearchUMKM(Request $request)
     {
         $yourToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5hbmRhbWFudGF1LmNvbS9hcGkvbG9naW4iLCJpYXQiOjE2OTU5MTUyOTYsImV4cCI6MTY5NjUyMDA5NiwibmJmIjoxNjk1OTE1Mjk2LCJqdGkiOiJIOFlIWUNwZkpxWGJKMG96Iiwic3ViIjoiNSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.Oof2r4AqxMOvSMgzMW_JzDSiTsSfESDa538O5tlr6vI";
         $request->validate([
             'query' => 'required|string|',
         ]);
-    
-       
+
+
         $Search = [
             'query' =>$request->input('query'),
-            
+
         ];
 
-        
-       
-       
+
+
+
         $client = new Client();
 
 
         try {
-          
+
 
             $responseSearch = $client->post(
                 'https://api.andamantau.com/api/w/umkm/search/name',
                 [
                     'headers' => [
                         'Content-Type' => 'application/json',
-                        
+
                     ],
                     'body' =>  json_encode($Search),
                 ]
             );
 
-           
+
 
             if ($responseSearch->getStatusCode() === 200) {
                 $responseData = json_decode($responseSearch->getBody(), true);
@@ -108,24 +104,24 @@ class SellersController extends Controller
         }
     }
 
-    
+
     public function filter(Request $request)
-    {    
+    {
         $yourToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5hbmRhbWFudGF1LmNvbS9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNjk2MjI3NTQyLCJleHAiOjE2OTY4MzIzNDIsIm5iZiI6MTY5NjIyNzU0MiwianRpIjoiNWpQNlZ5M2prN1FSMkpDYyIsInN1YiI6IjEwIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.FM4EGFRGS91QkLTHdJL-zXpNRIy6_Iz9If6BwhdsOME";
         $client = new Client();
-    
+
         $provinces =  $request->input('province', []);
-        
+
         // Join the "province" values with commas
         $provinceQueryParam = implode(',', $provinces);
-        
+
         $queryParams = [
             'province' => $provinceQueryParam,
         ];
-        
-        
+
+
         try {
-          
+
 
             $response = $client->get(
                 'https://api.andamantau.com/api/w/umkm/filter/?province=',
@@ -135,12 +131,12 @@ class SellersController extends Controller
                         'Authorization' => 'Bearer ' . $yourToken,
                     ],
                     'query' => $queryParams,
-                    
+
                 ]
             );
-            
-            
-           
+
+
+
 
             if ($response->getStatusCode() === 200) {
                 $responseData = json_decode($response->getBody(), true);
@@ -150,32 +146,32 @@ class SellersController extends Controller
 
 
                 ]);
-            } 
+            }
         } catch (RequestException $e) {
             return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
-    
+
         }
-    
-    
+
+
     }
 
     public function filterCard(Request $request)
-    {    
+    {
         $yourToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5hbmRhbWFudGF1LmNvbS9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNjk2MjI3NTQyLCJleHAiOjE2OTY4MzIzNDIsIm5iZiI6MTY5NjIyNzU0MiwianRpIjoiNWpQNlZ5M2prN1FSMkpDYyIsInN1YiI6IjEwIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.FM4EGFRGS91QkLTHdJL-zXpNRIy6_Iz9If6BwhdsOME";
         $client = new Client();
-    
+
         $provinces =  $request->input('province', []);
-        
+
         // Join the "province" values with commas
         $provinceQueryParam = implode(',', $provinces);
-       
+
         $queryParams = [
             'province' => $provinceQueryParam,
         ];
-        
-        
+
+
         try {
-          
+
 
             $response = $client->get(
                 'https://api.andamantau.com/api/w/umkm/filter/?province=',
@@ -185,12 +181,12 @@ class SellersController extends Controller
                         'Authorization' => 'Bearer ' . $yourToken,
                     ],
                     'query' => $queryParams,
-                    
+
                 ]
             );
-            
-            
-           
+
+
+
 
             if ($response->getStatusCode() === 200) {
                 $responseData = json_decode($response->getBody(), true);
@@ -200,22 +196,19 @@ class SellersController extends Controller
 
 
                 ]);
-            } 
+            }
         } catch (RequestException $e) {
             return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
-    
+
         }
-    
-    
+
+
     }
     /**
      * Display the specified resource.
      */
     public function show(Request $request)
     {
-
-
-
         $umkm_name = str_replace('-', ' ', $request->segment(2));
         // dd($umkm_name);
 
@@ -240,9 +233,6 @@ class SellersController extends Controller
                     'body' =>  json_encode($requestDataProduct),
                 ]
             );
-
-
-
             // dd($responseUMKMPAll);
             $responseBodyDetail = $responseUMKMPAll->getBody();
 
