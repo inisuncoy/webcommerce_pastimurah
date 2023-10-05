@@ -7,7 +7,9 @@
             @include("components.slider")
         </div>
     </div>
-    <div class="px-5 pt-40 md:px-20 relative w-full">
+
+    
+    <div class="px-5 pt-0 md:px-20 relative w-full">
         <h1 class="font-bold text-[25px] md:text-[30px] pb-8 text-center md:text-left">Popular List UMKM</h1>
         <div class="grid grid-cols-2 gap-4 md:gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
         @foreach ($umkm_data as $umkm)
@@ -15,7 +17,7 @@
                 <div class="flex flex-col items-center justify-center pb-10 gap-y-4">
                     <div class="flex items-center justify-center">
                        
-                        <img src= {{ !empty($umkm['umkm_image']) && @getimagesize('https://api.andamantau.com/' . $umkm['umkm_image']) ? 'https://api.andamantau.com/' . $umkm['umkm_image']:  asset('assets/images/noimage.png') }} alt="product" class="object-cover w-90 aspect-square"/>
+                        <img src= {{ !empty($umkm['umkm_image']) && @getimagesize('https://api.andamantau.com/' . $umkm['umkm_image']) ? 'https://api.andamantau.com/' . $umkm['umkm_image']:  asset('assets/images/noimage.png') }} alt="product" class="object-cover w-96 aspect-square"/>
                     </div>
                     <div class="text-center">
                         <h1 class="text-[20px] font-[400]">{{ $umkm["umkm_name"] }}</h1>
@@ -40,7 +42,7 @@
                     </div>
 
                     <div class="flex flex-col pt-4 gap-y-2">
-                        <h1 class="font-[700] text-[18px]">{{ $new["title"] }}</h1>
+                        <h1 class="font-[700] text-[18px] line-clamp-2">{{ $new["title"] }}</h1>
                         <p class="font-[400] text-[14px] text-[#696969] line-clamp-1 leading-7 my-4">
                             {{ Str::limit($new["content"], 100) }}
                         </p>

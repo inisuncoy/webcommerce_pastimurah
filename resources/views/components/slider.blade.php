@@ -1,6 +1,6 @@
 
 
- <div id="default-carousel" class="relative w-full h-[600px] md:h-[300px] lg:h-[500px] pt-8 pb-12 md:py-20 mt-0 overflow-hidden " data-carousel="slider"> 
+<div id="default-carousel" class="relative w-full pt-8 pb-12 md:py-10 mb-0 overflow-hidden" data-carousel="slider">
     <!-- Carousel wrapper -->
     <div class="relative h-56 rounded-lg md:h-96 overflow-y:visible "> 
          <!-- Item 1 -->
@@ -66,6 +66,6 @@
   
 
  </div>
-
+</div>
 
 
