@@ -112,8 +112,8 @@
                     
                 <img src={{ !empty($new["image"]) ? 'https://api.andamantau.com/' . $new["image"]: asset('assets/images/noimage.png') }} alt="product" class="object-cover w-full h-42 md:h-64">
                     <div class="flex flex-col pt-4 gap-y-2">
-                        <h1 class="font-[700] text-[18px]">{{ $new["title"] }}</h1>
-                        <p class="font-[400] text-[14px] text-[#696969] line-clamp-3"> {{ $new["content"] }}</p>
+                        <h1 class="font-[700] text-[18px] line-clamp-2">{{ $new["title"] }}</h1>
+                        <p class="font-[400] text-[14px] text-[#696969] line-clamp-1"> {{ $new["content"] }}</p>
                         {{-- <p class="font-[500] text-[14px] ">{{ \Carbon\Carbon::createFromFormat('d/m/Y', $new['createdAt'])->format('d F Y') }}</p> --}}
                         <div class="flex items-center justify-end">
                             <a href="/toko/{{ $umkm_all_detail['slug'] }}/blogs/{{ $new["slug-title"] }}" class="text-[#0645AD] mb-1">Baca Selengkapnya</a>
