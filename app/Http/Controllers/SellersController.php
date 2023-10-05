@@ -113,16 +113,15 @@ class SellersController extends Controller
     {    
         $yourToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5hbmRhbWFudGF1LmNvbS9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNjk2MjI3NTQyLCJleHAiOjE2OTY4MzIzNDIsIm5iZiI6MTY5NjIyNzU0MiwianRpIjoiNWpQNlZ5M2prN1FSMkpDYyIsInN1YiI6IjEwIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.FM4EGFRGS91QkLTHdJL-zXpNRIy6_Iz9If6BwhdsOME";
         $client = new Client();
-       $Kota=[];
-        $Kota = $request->input('kota');
+    
+        $Kota = $request->input('provinsi');
         
         
-        foreach ($Kota as $KotaArray) {
+        
             $queryParams = [
-                'kota' => $Kota,
+                'kota' => $Kota,];
 
-            ];
-           dd($queryParams);
+           
         try {
           
 
@@ -156,7 +155,7 @@ class SellersController extends Controller
             return view('pages.404.index');
         }
     
-    }
+    
     }
     /**
      * Display the specified resource.

@@ -31,7 +31,7 @@
             <img src={{ !empty($new["image"]) ? 'https://api.andamantau.com/' . $new["image"] : asset('assets/images/noimage.png') }} alt="product" class="object-cover w-full h-42 md:h-64">
                 <div class="flex flex-col pt-4 gap-y-2">
                     <h1 class="font-[700] text-[18px]">{{ $new["title"] }}</h1>
-                    <p class="font-[400] text-[14px] text-[#696969] line-clamp-3"> {{ $new["content"] }}</p>
+                    <p class="font-[400] text-[14px] text-[#696969] line-clamp-1"> {{ $new["content"] }}</p>
                     <p class="font-[50c0] text-[14px] "> {{ \Carbon\Carbon::parse($new['date'])->format('d-M-Y') }}</p>
                     <div  class="flex items-center justify-end">
                         <p class="text-[#0645AD] mb-1 text-[16px] md:text-[18px]">Baca Selengkapnya</p>

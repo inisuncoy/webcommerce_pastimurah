@@ -75,9 +75,7 @@
             @foreach ($umkm_all_detail['products'] as $product)
                 @component('components.product-card')
                     @slot('productImage')
-              
-                    {{ !empty($product["product_image"]) ? 'https://api.andamantau.com/' . $product["product_image"] : asset('assets/images/noimage.png') }}
-                    
+                    {{ !empty($product["product_image"]) && @getimagesize('https://api.andamantau.com/' . $product["product_image"]) ? 'https://api.andamantau.com/' . $product["product_image"] :  asset('assets/images/noimage.png') }}
                     @endslot
                     @slot('productUrl')
                         /toko/{{ $umkm_all_detail['slug'] }}/products/{{ $product['slug'] }}
@@ -109,7 +107,7 @@
         </div>
         <div class="flex gap-8 pb-10 overflow-x-scroll ">
         @foreach ($umkm_all_detail['news'] as $new)
-                <div class="flex flex-col justify-center p-4 bg-white rounded-xl drop-shadow-lg min-w-[400px] max-w-[400px]">
+                <div class="flex flex-col justify-center p-4 bg-white rounded-xl drop-shadow-lg min-w-[400px] max-w-[400pxgit i]">
                     
                 <img src={{ !empty($new["image"]) ? 'https://api.andamantau.com/' . $new["image"]: asset('assets/images/noimage.png') }} alt="product" class="object-cover w-full h-42 md:h-64">
                     <div class="flex flex-col pt-4 gap-y-2">
