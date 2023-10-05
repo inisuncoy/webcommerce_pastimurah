@@ -34,7 +34,7 @@
                     <p class="font-[400] text-[14px] text-[#696969] line-clamp-1"> {{ $new["content"] }}</p>
                     <p class="font-[50c0] text-[14px] "> {{ \Carbon\Carbon::parse($new['date'])->format('d-M-Y') }}</p>
                     <div  class="flex items-center justify-end">
-                        <p class="text-[#0645AD] mb-1 text-[16px] md:text-[18px]">Baca Selengkapnya</p>
+                        <a href="/toko/{{ $new['slug'] }}/blogs/{{ $new["slug-title"] }}" class="text-[#0645AD] mb-1 text-[16px] md:text-[18px]">Baca Selengkapnya</a>
                         <svg width="25" height="24" class="mb-0.5" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.3105 18L18.1573 12L12.3105 6" stroke="#0645AD" stroke-width="2"/>
                             <path d="M6.46377 18L12.3105 12L6.46377 6" stroke="#0645AD" stroke-width="2"/>

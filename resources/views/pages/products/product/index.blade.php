@@ -32,9 +32,8 @@
                                         <img src={{ url($image) }} alt="" class="w-[47px] h-[47px] rounded-sm object-cover">
                                     @endforeach --}}
                                 </div>
-                                <div class="flex pt-2 gap-x-4">
+                                <div class="flex pt-2 gap-x-4 flex ">
                                     <div class="w-14 h-14">
-                                        
                                     <img src={{ !empty($umkm_all_detail['umkm']['umkm_image']) && @getimagesize('https://api.andamantau.com/' . $umkm_all_detail['umkm']['umkm_image']) ? 'https://api.andamantau.com/' . $umkm_all_detail['umkm']['umkm_image'] :  asset('assets/images/noimage.png') }} alt="">
                                     </div>
                                     <div class="flex flex-col justify-between">
@@ -73,10 +72,10 @@
                         <div class="w-full h-full bg-white border-2 rounded-lg">
                             <form action="/buy-now" method="GET" class="flex flex-col w-full h-full py-4 px-7 gap-y-5">
                                 @csrf
-                                <h1 class="text-[24px] font-bold">Atur Jumlah dan catatan</h1>
+                                {{-- <h1 class="text-[24px] font-bold">Atur Jumlah dan catatan</h1> --}}
                                 <div class="flex flex-col justify-between h-full gap-y-5">
                                     <div class="flex flex-col gap-y-5">
-                                        <div class="">
+                                        {{-- <div class="">
                                             @component("components.input-plus-minus")
                                                 @slot("value")
                                                     0
@@ -85,10 +84,10 @@
                                                 {{ $umkm_all_detail['product']['stock'] }}
                                                 @endslot
                                             @endcomponent
-                                        </div>
+                                        </div> --}}
                                         <input type="hidden" name="sellerSlug" value={{ $umkm_all_detail['slug-umkm'] }}>
                                         <input type="hidden" name="productSlug" value={{ $umkm_all_detail['slug-product'] }}>
-                                        <h2 class="font-[400] text-[18px]">Stok Total Sisa: {{ $umkm_all_detail['product']['stock'] }}</h2>
+                                        {{-- <h2 class="font-[400] text-[18px]">Stok Total Sisa: {{ $umkm_all_detail['product']['stock'] }}</h2> --}}
                                         <div>
                                             <button type="button" class="flex" id="showCatatanButton" onclick="showCatatanInput()">
                                                 {{-- < width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -151,7 +150,7 @@
                 </div>
             </div>
             {{-- Produk Lainnya --}}
-            <div class="flex flex-col gap-y-10">
+            <div class="flex flex-col gap-y-11">
                 <h2 class="font-bold text-[20px]">Produk Lainnya</h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-16">
                 @foreach ($umkm_all_detail['otherProducts'] as $product)

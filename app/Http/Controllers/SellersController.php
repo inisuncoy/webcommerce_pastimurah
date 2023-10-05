@@ -114,14 +114,16 @@ class SellersController extends Controller
         $yourToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5hbmRhbWFudGF1LmNvbS9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNjk2MjI3NTQyLCJleHAiOjE2OTY4MzIzNDIsIm5iZiI6MTY5NjIyNzU0MiwianRpIjoiNWpQNlZ5M2prN1FSMkpDYyIsInN1YiI6IjEwIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.FM4EGFRGS91QkLTHdJL-zXpNRIy6_Iz9If6BwhdsOME";
         $client = new Client();
     
-        $Kota = $request->input('provinsi');
-        
-        
-        
-            $queryParams = [
-                'kota' => $Kota,];
+        $provinces = (array) $request->input('province');
 
-           
+        // Join the "province" values with commas
+        $provinceQueryParam = implode(',', $provinces);
+        
+        $queryParams = [
+            'province' => $provinceQueryParam,
+        ];
+        dd($queryParams);
+        
         try {
           
 
@@ -137,7 +139,7 @@ class SellersController extends Controller
                 ]
             );
             
-            // dd($response);
+            
            
 
             if ($response->getStatusCode() === 200) {
@@ -148,11 +150,10 @@ class SellersController extends Controller
 
 
                 ]);
-            } else {
-                return view('pages.404.index');
-            }
+            } 
         } catch (RequestException $e) {
-            return view('pages.404.index');
+            return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
+    
         }
     
     
