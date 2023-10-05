@@ -13,23 +13,22 @@
     <div class="flex-col hidden md:flex md:cols-span-1 gap-y-5">
         <h1 class="font-bold text-[24px]"></h1>
         <div class="flex flex-col p-5 bg-white rounded-lg shadow-lg gap-y-7">
-            {{-- <div class="flex items-center font-normal gap-x-5">
+            <div class="flex items-center font-normal gap-x-5">
                 <input type="checkbox" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
                 <label for="">Semua</label>
-            </div> --}}
+            </div> 
             <div class="flex flex-col font-normal gap-y-2">
-                {{-- <div class="flex items-center gap-x-5">
+                <div class="flex items-center gap-x-5">
                     <input type="checkbox" name="province[]" id="DKI Jakarta" value="DKI-Jakarta" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
                     <label for="DKI Jakarta">DKI Jakarta</label>
-                </div> --}}
-                {{-- <div class="flex items-center gap-x-5">
+                </div> 
+                <div class="flex items-center gap-x-5">
                     <input type="checkbox" name="province[]" id="Sulawesi Selatan" value="Sulawesi-Selatan" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
                     <label for="Sulawesi Selatan">Sulawesi Selatan</label>
-                </div> --}}
-                
-                {{-- <div class="font-normal text-[#89B53D] pt-3">
+                </div> 
+                 <div class="font-normal text-[#89B53D] pt-3">
                     <button id="openModalButton" onclick="openModal()" data-modal-data='https://drive.google.com/file/d/1jIYUGnLryU_yGtTn7qI-Nt6EnW2mVFwp/preview' type="button">Lihat Selengkapnya</button>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>
@@ -413,11 +412,11 @@
     checkboxes.forEach(checkbox => {
       checkboxData[checkbox.name] = checkbox.checked;
     });
-    sessionStorage.setItem(`checkboxData_${formId}`, JSON.stringify(checkboxData));
+    localStorage.setItem(`checkboxData_${formId}`, JSON.stringify(checkboxData));
   }
 
   function loadCheckboxStates() {
-    const savedData = sessionStorage.getItem(`checkboxData_${formId}`);
+    const savedData = localStorage.getItem(`checkboxData_${formId}`);
     if (savedData) {
       const checkboxData = JSON.parse(savedData);
       checkboxes.forEach(checkbox => {
@@ -433,16 +432,18 @@
   checkboxes.forEach(checkbox => {
     checkbox.addEventListener('click', () => {
       saveCheckboxStates();
-      myForm.submit();
+      myForm.submit(); 
     });
   });
 
-  // No need to remove data with sessionStorage
+
+  loadCheckboxStates();
 }
 
 window.onload = () => {
   setupFormHandling('myForm1');
-  setupFormHandling('myForm');
+  setupFormHandling('myForm'); 
 };
+
 </script>
 @endpush

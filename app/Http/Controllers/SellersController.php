@@ -168,7 +168,7 @@ class SellersController extends Controller
         
         // Join the "province" values with commas
         $provinceQueryParam = implode(',', $provinces);
-        
+       
         $queryParams = [
             'province' => $provinceQueryParam,
         ];
