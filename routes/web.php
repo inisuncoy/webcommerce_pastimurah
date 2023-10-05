@@ -39,8 +39,9 @@ Route::get('/toko/{slug}', [SellersController::class, 'show']);
 Route::get('/toko/{sellerSlug}/products/{productSlug}', [SellerProductsController::class, 'show']);
 
 Route::get('/blogs', [BlogsController::class, 'index']);
-Route::get('/blogs/filter', [BlogsController::class, 'Oldest_News']);
 Route::get('/toko/{sellerSlug}/blogs/{newSlug}', [BlogsController::class, 'show']);
+Route::get('/blogs/filter', [BlogsController::class, 'Oldest_News']);
+
 
 Route::get('/billing', function (Request $request) {
     return view("pages.billing.index");

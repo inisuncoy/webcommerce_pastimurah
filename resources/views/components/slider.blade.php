@@ -1,36 +1,37 @@
 
+
  <div id="default-carousel" class="relative w-full h-[600px] md:h-[300px] lg:h-[500px] pt-8 pb-12 md:py-20 mt-0 overflow-hidden " data-carousel="slider"> 
     <!-- Carousel wrapper -->
     <div class="relative h-56 rounded-lg md:h-96 overflow-y:visible "> 
          <!-- Item 1 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer">
-            <img src="/assets/images/s&k berlaku (1).png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+            <img src={{ "https://api.andamantau.com/".$carousel_data[0]['image'] }} class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </a>
         </div> 
 
         <!-- Item 2 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/images/s&k berlaku (2).png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                <img src={{ "https://api.andamantau.com/".$carousel_data[1]['image'] }}  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
             </a>
         </div> 
         <!-- Item 3 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/images/s&k berlaku (1).png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                <img src={{ "https://api.andamantau.com/".$carousel_data[2]['image'] }}  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
             </a>
         </div> 
         <!-- Item 4 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/images/s&k berlaku (2).png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                <img src={{ "https://api.andamantau.com/".$carousel_data[3]['image'] }}  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
             </a>
         </div> 
         <!-- Item 5 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <a href="https://example.com" target="_blank" rel="noopener noreferrer">
-                <img src="/assets/images/s&k berlaku (1).png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                <img src={{ "https://api.andamantau.com/".$carousel_data[4]['image'] }}  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
             </a>
         </div> 
        

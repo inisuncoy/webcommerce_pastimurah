@@ -17,7 +17,8 @@
     <div class="flex flex-col gap-y-10">
         <div class="md:grid items-center grid-cols-6 gap-x-10">
             <div class="col-span-3 lg:col-span-1">
-                <img src={{ !empty($umkm_all_detail['umkm']['umkm_image']) ? 'https://api.andamantau.com/' . $umkm_all_detail['umkm']['umkm_image'] : asset('assets/images/noimage.png') }} alt="product" class="object-cover rounded-md w-96 aspect-square">
+                
+                <img src={{ !empty($umkm_all_detail['umkm']['umkm_image']) && @getimagesize('https://api.andamantau.com/' . $umkm_all_detail['umkm']['umkm_image']) ? 'https://api.andamantau.com/' . $umkm_all_detail['umkm']['umkm_image'] :  asset('assets/images/noimage.png') }} alt="product" class="object-cover rounded-md w-96 aspect-square">
             </div>
             <div class="flex flex-col md:col-span-3 lg:col-span-5 gap-y-5">
                 <h1 class="font-bold text-[30px]">{{ $umkm_all_detail['umkm']["umkm_name"] }}</h1>
@@ -60,15 +61,15 @@
         <div class="flex items-center justify-between py-10">
             <h1 class="font-bold text-[30px]">Produk</h1>
             <div class="flex items-center gap-x-2">
-                <h1 class="font-bold">Urutkan </h1>
-                <select name="" class="bg-white text-black rounded-full w-full border-[#89B53D] border font-[500]" id="">
+                <h1 class="font-bold"></h1>
+                {{-- <select name="" class="bg-white text-black rounded-full w-full border-[#89B53D] border font-[500]" id="">
                     <option value="" selected>Harga terendah</option>
                     <option value="">Paling laris</option>
                     <option value="">Terbaru</option>
                     <option value="">Harga Tertinggi</option>
                     <option value="">Harga Terendah</option>
                     <option value="">Ulasan Terbanyak</option>
-                </select>
+                </select> --}}
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-20">
@@ -107,7 +108,7 @@
         </div>
         <div class="flex gap-8 pb-10 overflow-x-scroll ">
         @foreach ($umkm_all_detail['news'] as $new)
-                <div class="flex flex-col justify-center p-4 bg-white rounded-xl drop-shadow-lg min-w-[400px] max-w-[400pxgit i]">
+                <div class="flex flex-col justify-center p-4 bg-white rounded-xl drop-shadow-lg min-w-[400px] max-w-[400px]">
                     
                 <img src={{ !empty($new["image"]) ? 'https://api.andamantau.com/' . $new["image"]: asset('assets/images/noimage.png') }} alt="product" class="object-cover w-full h-42 md:h-64">
                     <div class="flex flex-col pt-4 gap-y-2">
@@ -115,7 +116,7 @@
                         <p class="font-[400] text-[14px] text-[#696969] line-clamp-3"> {{ $new["content"] }}</p>
                         {{-- <p class="font-[500] text-[14px] ">{{ \Carbon\Carbon::createFromFormat('d/m/Y', $new['createdAt'])->format('d F Y') }}</p> --}}
                         <div class="flex items-center justify-end">
-                            <a href="/toko/{{ $umkm_all_detail['slug'] }}/blogs/{{ $new["title"] }}" class="text-[#0645AD] mb-1">Baca Selengkapnya</a>
+                            <a href="/toko/{{ $umkm_all_detail['slug'] }}/blogs/{{ $new["slug-title"] }}" class="text-[#0645AD] mb-1">Baca Selengkapnya</a>
                             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12.3105 18L18.1573 12L12.3105 6" stroke="#0645AD" stroke-width="2"/>
                                 <path d="M6.46377 18L12.3105 12L6.46377 6" stroke="#0645AD" stroke-width="2"/>
