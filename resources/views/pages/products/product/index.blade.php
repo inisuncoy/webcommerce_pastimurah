@@ -25,8 +25,7 @@
                             <div class="flex flex-col md:w-full lg:w-2/6 gap-y-4 ">
                                 {{-- Image Preview --}}
                                 <div class="flex justify-center">
-                                    
-                                  <img src={{ !empty($umkm_all_detail['product']['image']) ? 'https://api.andamantau.com/' . $umkm_all_detail['product']['image'] : asset('assets/images/noimage.png') }} alt=""class="object-cover rounded-md md:w-full lg:w-72 h-72">
+                                  <img src={{ !empty($umkm_all_detail['product']['image']) && @getimagesize('https://api.andamantau.com/' . $umkm_all_detail['product']['image']) ? 'https://api.andamantau.com/' . $umkm_all_detail['product']['image'] :  asset('assets/images/noimage.png') }} alt=""class="object-cover rounded-md md:w-full lg:w-72 h-72">
                                 </div>
                                 <div class="flex justify-center px-2 gap-x-2">
                                 {{-- @foreach ($umkm_all_details['images'] as $image)
@@ -36,7 +35,7 @@
                                 <div class="flex pt-2 gap-x-4">
                                     <div class="w-14 h-14">
                                         
-                                    <img src={{ !empty($umkm_all_detail['umkm']['umkm_image']) ? 'https://api.andamantau.com/' . $umkm_all_detail['umkm']['umkm_image'] : asset('assets/images/noimage.png') }} alt="">
+                                    <img src={{ !empty($umkm_all_detail['umkm']['umkm_image']) && @getimagesize('https://api.andamantau.com/' . $umkm_all_detail['umkm']['umkm_image']) ? 'https://api.andamantau.com/' . $umkm_all_detail['umkm']['umkm_image'] :  asset('assets/images/noimage.png') }} alt="">
                                     </div>
                                     <div class="flex flex-col justify-between">
                                     <h1 class="font-bold text-[18px]">{{ $umkm_all_detail['umkm']['umkm_name'] }}</h1>
@@ -160,7 +159,7 @@
                             {{-- @if ($product['slug'] !== $productData['slug']) --}}
                                 @component('components.product-card')
                                     @slot('productImage')
-                                    {{ !empty($product['image']) ? 'https://api.andamantau.com/' . $product['image'] : asset('assets/images/noimage.png') }}
+                                    {{ !empty($product['image']) && @getimagesize('https://api.andamantau.com/' . $product['image']) ? 'https://api.andamantau.com/' . $product['image'] :  asset('assets/images/noimage.png') }}
                                     @endslot
                                     @slot('productUrl')
                                         /toko/{{ $umkm_all_detail['slug-umkm'] }}/products/{{$umkm_all_detail['slug-product'] }}
