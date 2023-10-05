@@ -30,6 +30,7 @@ Route::get('/buy-now', [BuyNowController::class, 'index']);
 
 Route::get('/checkout', [CheckoutController::class, 'index']);
 Route::get('/toko/filter', [SellersController::class, 'filter']);
+Route::get('/toko/filters', [SellersController::class, 'filterCard']);
 Route::get('/toko', [SellersController::class, 'index']);
 Route::post('/toko/search', [SellersController::class, 'SearchUMKM']);
 Route::get('/toko/{slug}', [SellersController::class, 'show']);

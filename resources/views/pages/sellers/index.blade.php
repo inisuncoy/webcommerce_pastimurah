@@ -8,7 +8,7 @@
 </div>
 {{-- Content --}}
 <div class="grid grid-cols-1 px-5 pt-5 md:px-20 md:grid-cols-5 gap-x-10">
-    <form id="myForm" action="/toko/filter" method="GET">
+    <form id="myForm" action="/toko/filters" method="GET">
         @csrf
     <div class="flex-col hidden md:flex md:cols-span-1 gap-y-5">
         <h1 class="font-bold text-[24px]"></h1>
@@ -27,8 +27,8 @@
                     <label for="Sulawesi Selatan">Sulawesi Selatan</label>
                 </div>
                 
-                 <div class="font-normal text-[#89B53D] pt-3">
-                    <button id="openModalButton" onclick="openModal()" data-modal-data='https://drive.google.com/file/d/1jIYUGnLryU_yGtTn7qI-Nt6EnW2mVFwp/preview'>Lihat Selengkapnya</button>
+                <div class="font-normal text-[#89B53D] pt-3">
+                    <button id="openModalButton" onclick="openModal()" data-modal-data='https://drive.google.com/file/d/1jIYUGnLryU_yGtTn7qI-Nt6EnW2mVFwp/preview' type="button">Lihat Selengkapnya</button>
                 </div>
             </div>
         </div>
@@ -111,6 +111,8 @@
 
 @endsection
 
+
+
 @section('modal')
 {{-- Modal --}}
 <div class="fixed top-0 bottom-0 left-0 hidden w-full h-full overflow-auto" id="modal">
@@ -132,10 +134,20 @@
                         <span class="mb-1">&times;</span>
                     </div>
                 </div>
-                <form id="myForm" action="/toko/filter" method="GET">
+                <form id="myForm1" action="/toko/filter" method="GET">
                     @csrf
                 <div class="grid w-full grid-cols-3 p-5">
                     <div class="flex flex-col gap-y-3">
+
+                        <div class="flex flex-col">
+                            <h1 class="ml-6 font-extrabold">Semua Lokasi</h1>
+                            <div>
+                                <div class="flex items-center gap-x-2">
+                                    <input type="checkbox" name="province[]" id="All" value="All" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
+                                    <label for="All">Semua</label>
+                                </div>
+                            </div>
+                        </div>
                         {{-- A --}}
                         <div class="flex flex-col">
                             <h1 class="ml-6">A</h1>
@@ -392,42 +404,45 @@
             closeModal();
         }
     });
+    function setupFormHandling(formId) {
+  const checkboxes = document.querySelectorAll(`#${formId} input[type="checkbox"]`);
+  const myForm = document.getElementById(formId);
 
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-
-function saveCheckboxStates() {
-  const checkboxData = {};
-  checkboxes.forEach(checkbox => {
-
-    checkboxData[checkbox.name] = checkbox.checked;
-  });
-  localStorage.setItem('checkboxData', JSON.stringify(checkboxData));
-}
-
-function loadCheckboxStates() {
-  const savedData = localStorage.getItem('checkboxData');
-  if (savedData) {
-    const checkboxData = JSON.parse(savedData);
+  function saveCheckboxStates() {
+    const checkboxData = {};
     checkboxes.forEach(checkbox => {
-      if (checkboxData.hasOwnProperty(checkbox.name)) {
-        checkbox.checked = checkboxData[checkbox.name];
-      } else {
-        checkbox.checked = false;
-      }
+      checkboxData[checkbox.name] = checkbox.checked;
     });
+    sessionStorage.setItem(`checkboxData_${formId}`, JSON.stringify(checkboxData));
   }
+
+  function loadCheckboxStates() {
+    const savedData = sessionStorage.getItem(`checkboxData_${formId}`);
+    if (savedData) {
+      const checkboxData = JSON.parse(savedData);
+      checkboxes.forEach(checkbox => {
+        if (checkboxData.hasOwnProperty(checkbox.name)) {
+          checkbox.checked = checkboxData[checkbox.name];
+        } else {
+          checkbox.checked = false;
+        }
+      });
+    }
+  }
+
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('click', () => {
+      saveCheckboxStates();
+      myForm.submit();
+    });
+  });
+
+  // No need to remove data with sessionStorage
 }
 
-checkboxes.forEach(checkbox => {
-  checkbox.addEventListener('click', () => {
-    saveCheckboxStates();
-    document.getElementById('myForm').submit();
-  });
-});
-
-loadCheckboxStates();
-window.addEventListener('beforeunload', () => {
-  localStorage.removeItem('checkboxData');
-});
+window.onload = () => {
+  setupFormHandling('myForm1');
+  setupFormHandling('myForm');
+};
 </script>
 @endpush
