@@ -12,36 +12,35 @@
         @csrf
     <div class="flex-col hidden md:flex md:cols-span-1 gap-y-5">
         <h1 class="font-bold text-[24px]"></h1>
-        <div class="flex flex-col p-5 bg-white rounded-lg shadow-lg gap-y-7">
-            {{-- <div class="flex items-center font-normal gap-x-5">
+        {{-- <div class="flex flex-col p-5 bg-white rounded-lg shadow-lg gap-y-7">
+            <div class="flex items-center font-normal gap-x-5">
                 <input type="checkbox" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
                 <label for="">Semua</label>
-            </div> --}}
+            </div>
             <div class="flex flex-col font-normal gap-y-2">
-                {{-- <div class="flex items-center gap-x-5">
+                <div class="flex items-center gap-x-5">
                     <input type="checkbox" name="province[]" id="DKI Jakarta" value="DKI-Jakarta" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
                     <label for="DKI Jakarta">DKI Jakarta</label>
-                </div> --}}
-                {{-- <div class="flex items-center gap-x-5">
+                </div>
+                <div class="flex items-center gap-x-5">
                     <input type="checkbox" name="province[]" id="Sulawesi Selatan" value="Sulawesi-Selatan" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
                     <label for="Sulawesi Selatan">Sulawesi Selatan</label>
-                </div> --}}
-                
-                {{-- <div class="font-normal text-[#89B53D] pt-3">
+                </div>
+                <div class="font-normal text-[#89B53D] pt-3">
                     <button id="openModalButton" onclick="openModal()" data-modal-data='https://drive.google.com/file/d/1jIYUGnLryU_yGtTn7qI-Nt6EnW2mVFwp/preview' type="button">Lihat Selengkapnya</button>
-                </div> --}}
+                </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
 </form>
     <div class="flex flex-col md:col-span-4 gap-y-6">
         <div class="relative flex md:justify-end">
-            
-        <form action="/toko/search" method="POST" class="w-full"> 
+
+        <form action="/toko/search" method="POST" class="w-full">
             @csrf
             <input type="text"name="query" id="query" class="w-full rounded-lg text-[15px] md:text-[17px] py-2.5 pl-12 md:pl-14 md:py-3" placeholder="Cari Nama UMKM" value="{{ old('query') }}">
-        </form> 
+        </form>
             <span class="absolute left-3 top-[10px] md:top-2.5">
                 <svg class="w-[24px] h-[24px] md:w-[30px] md:h-[30px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="11" cy="11" r="6" stroke="#222222" stroke-opacity="0.5"/>
