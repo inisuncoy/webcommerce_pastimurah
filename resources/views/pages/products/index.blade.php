@@ -80,7 +80,7 @@
                                     {{ url($product['images'][0]) }}
                                 @endslot
                                 @slot('productUrl')
-                                    /sellers/{{ $seller['slug'] }}/products/{{ $product['slug'] }}
+                                    /toko/{{ $seller['slug'] }}/products/{{ $product['slug'] }}
                                 @endslot
                                 @slot('productTitle')
                                     {{ $product['name'] }}

@@ -58,7 +58,7 @@ class BlogsController extends Controller
 
 
         } catch (RequestException $e) {
-            return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
+            return view('pages.404.index');
         }
 
     }
@@ -92,7 +92,7 @@ class BlogsController extends Controller
             "query" => $NewsName,
         ];
     //   dd($requestDataNews);
-
+    try {
         $responseUMKMPNEWS = $client->post('https://api.andamantau.com/api/w/news'
                 , [
                 'headers' => [
@@ -118,6 +118,10 @@ class BlogsController extends Controller
             } else {
                 return abort(404);
             }
+
+        }catch (RequestException $e) {
+            return view('pages.404.index');
+        }
     }
 
     /**
@@ -128,7 +132,7 @@ class BlogsController extends Controller
     $sortingOption = $request->input('sorting_option');
 
     $client = new Client();
-    
+    try{
     if ($sortingOption === 'terlama') {
         $responseNews = $client->get('https://api.andamantau.com/api/w/oldest-news', [
             'headers' => [
@@ -164,9 +168,11 @@ class BlogsController extends Controller
         } else {
             return abort(404);
         }
-
+    }}catch (RequestException $e) {
+        return view('pages.404.index');
     }
 }
+
 
 
     /**

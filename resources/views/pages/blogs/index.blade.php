@@ -25,13 +25,14 @@
     <div class="grid grid-cols-1 md:px-5 md:grid-cols-3 gap-x-5 gap-y-5 md:gap-y-20">
     @foreach ($news as $new)
     {{-- @foreach ($seller["news"] as $new) --}}
-    <a href="/sellers/{{ $new['slug-umkm'] }}/blogs/{{ $new["slug-title"] }}" class="p-4 bg-white rounded-xl drop-shadow-lg md:min-w-[400px]">
+    <a href="/toko/{{ $new['slug-umkm'] }}/blogs/{{ $new["slug-title"] }}" class="p-4 bg-white rounded-xl drop-shadow-lg md:min-w-[400px]">
             <div class="flex flex-col justify-center">
-            <img src={{"https://api.andamantau.com/".$new["image"]}} alt="product" class="object-cover w-full h-42 md:h-64">
+                
+            <img src={{ !empty($new["image"]) ? 'https://api.andamantau.com/' . $new["image"] : asset('assets/images/noimage.png') }} alt="product" class="object-cover w-full h-42 md:h-64">
                 <div class="flex flex-col pt-4 gap-y-2">
                     <h1 class="font-[700] text-[18px]">{{ $new["title"] }}</h1>
                     <p class="font-[400] text-[14px] text-[#696969] line-clamp-3"> {{ $new["content"] }}</p>
-                    {{-- <p class="font-[50c0] text-[14px] ">{{ \Carbon\Carbon::createFromFormat('d/m/Y', $new['createdAt'])->format('d F Y') }}</p> --}}
+                    <p class="font-[50c0] text-[14px] "> {{ \Carbon\Carbon::parse($new['date'])->format('d-M-Y') }}</p>
                     <div  class="flex items-center justify-end">
                         <p class="text-[#0645AD] mb-1 text-[16px] md:text-[18px]">Baca Selengkapnya</p>
                         <svg width="25" height="24" class="mb-0.5" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">

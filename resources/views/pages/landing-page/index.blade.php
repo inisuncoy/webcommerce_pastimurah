@@ -1,8 +1,8 @@
 @extends('layouts.main.index')
 @section('pages')
-    <div class="-mt-4 md:pt-1.5 relative z-0">
-        <img src={{ url("assets/images/billboard.png") }} alt="billboard" class="absolute w-full h-[530px] md:h-[570px]">
-        <div class="px-5 overflow-hidden">
+    <div class="-mt-4 md:pt-2 relative z-0">
+        {{-- <img src={{ url("assets/images/billboard.png") }} alt="billboard" class="absolute w-full h-[500px] md:h-[300px] lg:h-[500px]  "> --}}
+        <div class="px-5">
             
             @include("components.slider")
         </div>
@@ -11,15 +11,16 @@
         <h1 class="font-bold text-[25px] md:text-[30px] pb-8 text-center md:text-left">Popular List UMKM</h1>
         <div class="grid grid-cols-2 gap-4 md:gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
         @foreach ($umkm_data as $umkm)
-            {{-- {{dd($umkm)}} --}}
-            <a href="/sellers/{{ $umkm["slug"] }}" class="bg-white rounded-lg drop-shadow-lg">
+            <a href="/toko/{{ $umkm["slug"] }}" class="bg-white rounded-lg drop-shadow-lg">
                 <div class="flex flex-col items-center justify-center pb-10 gap-y-4">
                     <div class="flex items-center justify-center">
-                        <img src={{"https://api.andamantau.com/".$umkm["umkm_image"] }} alt="product" class="object-cover w-full h-32 aspect-square"/>
+                        
+                        <img src={{!empty($umkm['umkm_image']) ? 'https://api.andamantau.com/' . $umkm['umkm_image'] : '/assets/images/noimage.png'}} alt="product" class="object-cover w-90 aspect-square"/>
                     </div>
                     <div class="text-center">
                         <h1 class="text-[20px] font-[400]">{{ $umkm["umkm_name"] }}</h1>
-                        <p class="font-[400] text-[14px]">{{ $umkm["city"] }}</p>
+                       
+                        <p class="font-[400] text-[14px]">{{ $umkm["city"].  ", " . $umkm['province'] }}</p>
                     </div>
                 </div>
             </a>
@@ -32,7 +33,7 @@
         </div>
         <div class="flex flex-wrap gap-8 px-10 pb-10 md:overflow-x-scroll md:px-20 md:flex-nowrap ">
             @foreach ($news as $new)
-            <a href="/sellers/{{ $new['slug-umkm'] }}/blogs/{{ $new["slug-title"] }}" class="  p-4 bg-white rounded-xl drop-shadow-lg md:min-w-[400px]">
+            <a href="/toko/{{ $new['slug-umkm'] }}/blogs/{{ $new["slug-title"] }}" class="  p-4 bg-white rounded-xl drop-shadow-lg md:min-w-[400px]">
                 <div class="flex flex-col justify-center  ">
                     <div class="">
                     <img src={{"https://api.andamantau.com/". $new["image"] }} alt="product" class="object-cover w-full h-42 md:h-64">
@@ -43,7 +44,9 @@
                         <p class="font-[400] text-[14px] text-[#696969] line-clamp-3 leading-7 my-4">
                             {{ Str::limit($new["content"], 100) }}
                         </p>
-                        {{-- <p class="font-[500] text-[14px] ">{{ \Carbon\Carbon::createFromFormat('d/m/Y', $new['date'])->format('d F Y') }}</p> --}}
+                        <p class="font-[500] text-[14px] ">
+                            {{ \Carbon\Carbon::parse($new['date'])->format('d-M-Y') }}
+                        </p>
                         <div class="flex items-center justify-end mr-3">
                             <div  class="text-[#0645AD] mb-1">Baca Selengkapnya</div>
                             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">

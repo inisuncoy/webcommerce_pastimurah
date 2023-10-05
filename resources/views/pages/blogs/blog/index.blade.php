@@ -21,7 +21,8 @@
         <div class="flex flex-col w-full gap-y-10">
             <div class="flex gap-x-5">
                 <div class="grow">
-                <img src={{ "https://api.andamantau.com/".$news['image'] }} class="w-full h-[411px] object-cover" alt="">
+                   
+                <img src={{ !empty($news["image"]) ? 'https://api.andamantau.com/'.$news["image"] : asset('assets/images/noimage.png') }}class="w-full h-[411px] object-cover" alt="">
                 </div>
                 <div class="flex flex-col gap-y-5">
                 {{-- <div class="">
