@@ -14,8 +14,8 @@
                 </div> --}}
             </div>
             <div class="text-md">
-                <h1 class="font-bold">Penulis: </h1>
-                <h1>{{ $news["author"] }}</h1>
+                <h1 class="">Penulis: </h1>
+                <h1 class="text-xl font-semibold">{{ $news["author"] }}</h1>
             </div>
         </div>
         <div class="flex flex-col w-full gap-y-10">
