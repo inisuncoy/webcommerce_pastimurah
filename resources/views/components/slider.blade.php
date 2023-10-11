@@ -1,6 +1,4 @@
 
-
-
 <div id="default-carousel" class="relative w-full pt-8 pb-12 md:py-10 mb-0 overflow-hidden" data-carousel="slider">
     <!-- Carousel wrapper -->
     <div class="relative h-56 rounded-lg md:h-96 overflow-y:visible "> 
