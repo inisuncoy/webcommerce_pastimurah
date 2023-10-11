@@ -233,7 +233,6 @@
                 showCatatanButton.classList.remove('hidden');
                 catatanInputText.classList.add('hidden');
             }
-
             const input = document.getElementById('quantity');
             const buyNowButton = document.getElementById('buyNowButton');
         </script>
