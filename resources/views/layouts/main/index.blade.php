@@ -24,13 +24,12 @@
         @include('components.navbar')
         <main class="my-[80px]">
             {{-- Content --}}
-
             @yield('pages')
         </main>
         {{-- Include Footer --}}
         @include('components.footer')
     </div>
-
+</div>
     @yield('modal')
 
     {{-- For <script></script> --}}

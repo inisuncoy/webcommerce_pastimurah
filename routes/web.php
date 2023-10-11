@@ -39,9 +39,9 @@ Route::get('/toko/{slug}', [SellersController::class, 'show']);
 
 Route::get('/toko/{sellerSlug}/products/{productSlug}', [SellerProductsController::class, 'show']);
 
-Route::get('/blogs', [BlogsController::class, 'index']);
-Route::get('/toko/{sellerSlug}/blogs/{newSlug}', [BlogsController::class, 'show']);
-Route::get('/blogs/filter', [BlogsController::class, 'Oldest_News']);
+Route::get('/berita', [BlogsController::class, 'index']);
+Route::get('/toko/{sellerSlug}/berita/{newSlug}', [BlogsController::class, 'show']);
+Route::get('/berita/filter', [BlogsController::class, 'Oldest_News']);
 
 
 Route::get('/billing', function (Request $request) {

@@ -100,7 +100,7 @@ class SellersController extends Controller
                 return abort(404);
             }
         } catch (RequestException $e) {
-            return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
+            return view('pages.404-Search.index');
         }
     }
 
@@ -159,16 +159,16 @@ class SellersController extends Controller
     {
         $yourToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5hbmRhbWFudGF1LmNvbS9wdWJsaWMvYXBpL2xvZ2luIiwiaWF0IjoxNjk2MjI3NTQyLCJleHAiOjE2OTY4MzIzNDIsIm5iZiI6MTY5NjIyNzU0MiwianRpIjoiNWpQNlZ5M2prN1FSMkpDYyIsInN1YiI6IjEwIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.FM4EGFRGS91QkLTHdJL-zXpNRIy6_Iz9If6BwhdsOME";
         $client = new Client();
-
+        $selectedOptions = $selectedOptions ?? [];
         $provinces =  $request->input('province', []);
 
         // Join the "province" values with commas
         $provinceQueryParam = implode(',', $provinces);
-
+        
         $queryParams = [
             'province' => $provinceQueryParam,
         ];
-
+   
 
         try {
 
@@ -193,7 +193,7 @@ class SellersController extends Controller
                 // dd($responseData);
                 return view('pages.sellers.index', [
                     'umkm_data' => $responseData['data'],
-
+                    // 'selectedOptions'=>$selectedOptions,
 
                 ]);
             }
@@ -210,10 +210,8 @@ class SellersController extends Controller
     public function show(Request $request)
     {
         $umkm_name = str_replace('-', ' ', $request->segment(2));
-        // dd($umkm_name);
-
-        // dd($sendData);
-        $apiBaseUrl = 'https://api.andamantau.com/api/w/umkm/list';
+       
+        
         $yourToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5hbmRhbWFudGF1LmNvbS9wdWJsaWNfaHRtbC9hcGkvbG9naW4iLCJpYXQiOjE2OTUxOTYyNjksImV4cCI6MTY5NTE5OTg2OSwibmJmIjoxNjk1MTk2MjY5LCJqdGkiOiJ5c0t2bXdVa1J1dm9RcjNWIiwic3ViIjoiNSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.4qULjcgQRUIyckVuUxzbx70owTYNK483DphDobQiePo";
         $client = new Client();
 
@@ -221,7 +219,7 @@ class SellersController extends Controller
             "query" => $umkm_name,
         ];
         try {
-            //   dd($requestDataProduct);
+           
 
             $responseUMKMPAll = $client->post(
                 'https://api.andamantau.com/api/w/umkm-details',
@@ -233,14 +231,11 @@ class SellersController extends Controller
                     'body' =>  json_encode($requestDataProduct),
                 ]
             );
-            // dd($responseUMKMPAll);
+           
             $responseBodyDetail = $responseUMKMPAll->getBody();
 
             $responseBodyDetail = json_decode($responseBodyDetail, true);
-            // dd($responseBodyDetail);
-
-            // $responseNewsData = json_decode($responseNews->getBody(), true);
-
+          
 
             if ($responseUMKMPAll->getStatusCode() === 200) {
 

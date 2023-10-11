@@ -8,12 +8,12 @@
         </a>
         <div class="flex items-center justify-center gap-10 font-bold text-black text-md">
             <a href="/" class="hidden md:block {{ Request::is('/') ? 'text-[#89B53D]' : 'hover:text-[#89B53D]' }}">Beranda</a>
-            <a href="/toko" class="hidden md:block {{ (Request::is('toko') or Request::is('toko/*') and !Request::is('toko/*/blogs/*')) ? 'text-[#89B53D]' : 'hover:text-[#89B53D]' }}">Toko</a>
-            <a href="/blogs" class="hidden md:block {{ (Request::is('blogs') or Request::is('toko/*/blogs/*')) ? 'text-[#89B53D]' : 'hover:text-[#89B53D]' }}">Blog</a>
+            <a href="/toko" class="hidden md:block {{ (Request::is('toko') or Request::is('toko/*') and !Request::is('toko/*/berita/*')) ? 'text-[#89B53D]' : 'hover:text-[#89B53D]' }}">Toko</a>
+            <a href="/berita" class="hidden md:block {{ (Request::is('berita') or Request::is('toko/*/berita/*')) ? 'text-[#89B53D]' : 'hover:text-[#89B53D]' }}">Berita</a>
             {{-- <a href="/cart" class="flex items-center gap-2 text-sm font-bold text-white bg-[#89B53D] py-2 px-4 rounded-md"> --}}
                 {{-- <img src={{ url('/assets/icons/cart.svg') }} alt="cart">
                 0 Items --}}
-            </a>
+            {{-- </a> --}}
         </div>
     </div>
     <div class="hidden w-full h-screen bg-black bg-opacity-70" id="navbarModal">
@@ -23,8 +23,8 @@
                 <a href="/" class="flex justify-center w-full py-2 border-y">
                     <p class="text-md">Beranda</p>
                 </a>
-                <a href="/blogs" class="flex justify-center w-full py-2 border-b">
-                    <p class="text-md">Blog</p>
+                <a href="/berita" class="flex justify-center w-full py-2 border-b">
+                    <p class="text-md">Berita</p>
                 </a>
                 <a href="/toko" class="flex justify-center w-full py-2 border-b">
                     <p class="text-md">Toko</p>

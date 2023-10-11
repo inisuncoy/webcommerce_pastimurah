@@ -12,28 +12,25 @@
         @csrf
     <div class="flex-col hidden md:flex md:cols-span-1 gap-y-5">
         <h1 class="font-bold text-[24px]"></h1>
-        <div class="flex flex-col p-5 bg-white rounded-lg shadow-lg gap-y-7">
-            <div class="flex items-center font-normal gap-x-5">
         {{-- <div class="flex flex-col p-5 bg-white rounded-lg shadow-lg gap-y-7">
             <div class="flex items-center font-normal gap-x-5">
                 <input type="checkbox" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
                 <label for="">Semua</label>
-            </div> 
             </div>
             <div class="flex flex-col font-normal gap-y-2">
                 <div class="flex items-center gap-x-5">
                     <input type="checkbox" name="province[]" id="DKI Jakarta" value="DKI-Jakarta" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
                     <label for="DKI Jakarta">DKI Jakarta</label>
-                </div> 
+                </div>
                 <div class="flex items-center gap-x-5">
                     <input type="checkbox" name="province[]" id="Sulawesi Selatan" value="Sulawesi-Selatan" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
                     <label for="Sulawesi Selatan">Sulawesi Selatan</label>
-                </div> 
-                 <div class="font-normal text-[#89B53D] pt-3">
+                </div>
+                <div class="font-normal text-[#89B53D] pt-3">
                     <button id="openModalButton" onclick="openModal()" data-modal-data='https://drive.google.com/file/d/1jIYUGnLryU_yGtTn7qI-Nt6EnW2mVFwp/preview' type="button">Lihat Selengkapnya</button>
                 </div>
             </div>
-        </div> 
+        </div> --}}
     </div>
 
 </form>
@@ -53,13 +50,13 @@
             </div>
             <div class="flex items-center justify-between md:hidden">
                 <div class="flex items-center gap-x-2">
-                <p>Filter</p>
+                {{-- <p>Filter</p> --}}
                 <button onclick="openModal()" class="mt-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"/></svg>
+                    {{-- <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"/></svg> --}}
                 </button>
             </div>
 
-            <button type="button" class="text-[#89B53D] font-bold md:hidden block">Hapus Semua</button>
+            {{-- <button type="button" class="text-[#89B53D] font-bold md:hidden block">Hapus Semua</button> --}}
         </div>
         {{-- <div class="flex flex-wrap gap-4">
             <div class="rounded-lg border-2 border-[#89B53D] bg-white py-1 px-2 text-[14px] flex gap-x-2 items-center">
@@ -415,11 +412,11 @@
     checkboxes.forEach(checkbox => {
       checkboxData[checkbox.name] = checkbox.checked;
     });
-    localStorage.setItem(`checkboxData_${formId}`, JSON.stringify(checkboxData));
+    sessionStorage.setItem(`checkboxData_${formId}`, JSON.stringify(checkboxData));
   }
 
   function loadCheckboxStates() {
-    const savedData = localStorage.getItem(`checkboxData_${formId}`);
+    const savedData = sessionStorage.getItem(`checkboxData_${formId}`);
     if (savedData) {
       const checkboxData = JSON.parse(savedData);
       checkboxes.forEach(checkbox => {
@@ -435,18 +432,16 @@
   checkboxes.forEach(checkbox => {
     checkbox.addEventListener('click', () => {
       saveCheckboxStates();
-      myForm.submit(); 
+      myForm.submit();
     });
   });
 
-
-  loadCheckboxStates();
+  // No need to remove data with sessionStorage
 }
 
 window.onload = () => {
   setupFormHandling('myForm1');
-  setupFormHandling('myForm'); 
+  setupFormHandling('myForm');
 };
-
 </script>
 @endpush
