@@ -7,11 +7,11 @@
         <div class="text-[#89B441] text-[18px] pt-20 font-normal flex items-center gap-x-2">
             <a href="/toko">Toko</a>
             <svg width="8" height="15" viewBox="0 0 8 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1.32257L7 7.51612L1 13.7097" stroke="black" stroke-opacity="0.5"/>
+                <path d="M1 1.32257L7 7.51612L1 13.7097" stroke="black" stroke-opacity="0.5" />
             </svg>
             <a href="/toko/{{ $umkm_all_detail['slug-umkm'] }}">{{ $umkm_all_detail['product']['name'] }}</a>
             <svg width="8" height="15" viewBox="0 0 8 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1.32257L7 7.51612L1 13.7097" stroke="black" stroke-opacity="0.5"/>
+                <path d="M1 1.32257L7 7.51612L1 13.7097" stroke="black" stroke-opacity="0.5" />
             </svg>
             <a>{{ $umkm_all_detail['umkm']['umkm_name'] }}</a>
         </div>
@@ -25,86 +25,95 @@
                             <div class="flex flex-col md:w-full lg:w-2/6 gap-y-4 ">
                                 {{-- Image Preview --}}
                                 <div class="flex justify-center">
-                                  <img src={{ !empty($umkm_all_detail['product']['image']) && @getimagesize('https://api.andamantau.com/' . $umkm_all_detail['product']['image']) ? 'https://api.andamantau.com/' . $umkm_all_detail['product']['image'] :  asset('assets/images/noimage.png') }} alt=""class="object-cover rounded-md md:w-full lg:w-72 h-72">
+                                    <img src={{ !empty($umkm_all_detail['product']['image']) && @getimagesize('https://api.andamantau.com/' . $umkm_all_detail['product']['image']) ? 'https://api.andamantau.com/' . $umkm_all_detail['product']['image'] : asset('assets/images/noimage.png') }}
+                                        alt=""class="object-cover rounded-md md:w-full lg:w-72 h-72">
                                 </div>
                                 <div class="flex justify-center px-2 gap-x-2">
-                                {{-- @foreach ($umkm_all_details['images'] as $image)
+                                    {{-- @foreach ($umkm_all_details['images'] as $image)
                                         <img src={{ url($image) }} alt="" class="w-[47px] h-[47px] rounded-sm object-cover">
                                     @endforeach --}}
                                 </div>
                                 <div class="flex pt-2 gap-x-4 flex ">
                                     <div class="w-14 h-14">
-                                    <img src={{ !empty($umkm_all_detail['umkm']['umkm_image']) && @getimagesize('https://api.andamantau.com/' . $umkm_all_detail['umkm']['umkm_image']) ? 'https://api.andamantau.com/' . $umkm_all_detail['umkm']['umkm_image'] :  asset('assets/images/noimage.png') }} alt="">
+                                        <img src={{ !empty($umkm_all_detail['umkm']['umkm_image']) && @getimagesize('https://api.andamantau.com/' . $umkm_all_detail['umkm']['umkm_image']) ? 'https://api.andamantau.com/' . $umkm_all_detail['umkm']['umkm_image'] : asset('assets/images/noimage.png') }}
+                                            alt="">
                                     </div>
                                     <div class="flex flex-col justify-between">
-                                    <h1 class="font-bold text-[18px]">{{ $umkm_all_detail['umkm']['umkm_name'] }}</h1>
+                                        <h1 class="font-bold text-[18px]">{{ $umkm_all_detail['umkm']['umkm_name'] }}</h1>
                                         {{-- <p class="font-semibold text-[16px]">{{ $umkm_detail["city"].  ", " . $umkm_detail['province'] }}</p> --}}
                                     </div>
                                 </div>
                             </div>
                             <div class="flex flex-col md:w-full lg:w-4/6 gap-y-3">
-                            <h1 class="font-bold text-[34px]">{{ $umkm_all_detail['product']['name'] }}</h1>
-                                <h2 class="font-bold text-[24px]">Rp.{{($umkm_all_detail['product']['price'])}}</h2>
+                                <h1 class="font-bold text-[34px]">{{ $umkm_all_detail['product']['name'] }}</h1>
+                                <h2 class="font-bold text-[24px]">Rp.{{ $umkm_all_detail['product']['price'] }}</h2>
                                 <div class="font-[400] text-[16px] flex flex-col gap-y-1">
                                     <h3>Deskripsi Produk :</h3>
                                     <p>
-                                    {{ $umkm_all_detail['product']['description'] }}
+                                        {{ $umkm_all_detail['product']['description'] }}
                                     </p>
                                 </div>
                                 <div class="flex flex-col justify-center pt-4 gap-y-3">
-                                <a href="https://www.instagram.com/{{ $umkm_all_detail['umkm']['instagram'] }}" target="_blank" class="flex items-center gap-x-3">
-                                        <img src={{ url("/assets/icons/instagram.svg") }} alt="instagram-icons" class="w-10 h-10">
+                                    <a href="https://www.instagram.com/{{ $umkm_all_detail['umkm']['instagram'] }}"
+                                        target="_blank" class="flex items-center gap-x-3">
+                                        <img src={{ url('/assets/icons/instagram.svg') }} alt="instagram-icons"
+                                            class="w-10 h-10">
                                         <h1 class="font-bold text-[17px]">{{ $umkm_all_detail['umkm']['instagram'] }}</h1>
-                                        </a>
-                                <a href="https://wa.me/62{{$umkm_all_detail['umkm']['whatsapp'] }}" target="_blank" class="flex items-center gap-x-3">
-                                        <img src={{ url("/assets/icons/whatsapp.svg") }} alt="whatsapp-icons" class="w-10 h-10">
+                                    </a>
+                                    <a href="https://wa.me/62{{ $umkm_all_detail['umkm']['whatsapp'] }}" target="_blank"
+                                        class="flex items-center gap-x-3">
+                                        <img src={{ url('/assets/icons/whatsapp.svg') }} alt="whatsapp-icons"
+                                            class="w-10 h-10">
                                         <h1 class="font-bold text-[17px]">{{ $umkm_all_detail['umkm']['whatsapp'] }}</h1>
-                                        </a>
-                                <a href="https://www.facebook.com/{{ $umkm_all_detail['umkm']['facebook'] }}" target="_blank" class="flex items-center gap-x-3">
-                                        <img src={{ url("/assets/icons/facebook.svg") }} alt="facebook-icons" class="w-10 h-10">
+                                    </a>
+                                    <a href="https://www.facebook.com/{{ $umkm_all_detail['umkm']['facebook'] }}"
+                                        target="_blank" class="flex items-center gap-x-3">
+                                        <img src={{ url('/assets/icons/facebook.svg') }} alt="facebook-icons"
+                                            class="w-10 h-10">
                                         <h1 class="font-bold text-[17px]">{{ $umkm_all_detail['umkm']['facebook'] }}</h1>
-                                        </a>
+                                    </a>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                     </div>
+                    {{-- <livewire:cart-button-component :sellerSlug="{{ $seller['slug'] }}" :productSlug="{{ $productData['slug'] }}" :quantity="2" /> --}}
                     <div class="col-span-2 lg:col-span-1 ">
-                        <div class="w-full h-full bg-white border-2 rounded-lg">
+                        {{-- <div class="w-full h-full bg-white border-2 rounded-lg">
                             <form action="/buy-now" method="GET" class="flex flex-col w-full h-full py-4 px-7 gap-y-5">
                                 @csrf
-                                {{-- <h1 class="text-[24px] font-bold">Atur Jumlah dan catatan</h1> --}}
+                                <h1 class="text-[24px] font-bold">Atur Jumlah dan catatan</h1>
                                 <div class="flex flex-col justify-between h-full gap-y-5">
                                     <div class="flex flex-col gap-y-5">
-                                        {{-- <div class="">
-                                            @component("components.input-plus-minus")
-                                                @slot("value")
+                                        <div class="">
+                                            @component('components.input-plus-minus')
+                                                @slot('value')
                                                     0
                                                 @endslot
-                                                @slot("stock")
+                                                @slot('stock')
                                                 {{ $umkm_all_detail['product']['stock'] }}
                                                 @endslot
                                             @endcomponent
-                                        </div> --}}
+                                        </div>
                                         <input type="hidden" name="sellerSlug" value={{ $umkm_all_detail['slug-umkm'] }}>
                                         <input type="hidden" name="productSlug" value={{ $umkm_all_detail['slug-product'] }}>
-                                        {{-- <h2 class="font-[400] text-[18px]">Stok Total Sisa: {{ $umkm_all_detail['product']['stock'] }}</h2> --}}
+                                        <h2 class="font-[400] text-[18px]">Stok Total Sisa: {{ $umkm_all_detail['product']['stock'] }}</h2>
                                         <div>
                                             <button type="button" class="flex" id="showCatatanButton" onclick="showCatatanInput()">
-                                                {{-- < width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M5.92971 19.283L5.92972 19.283L5.95149 19.2775L5.95151 19.2775L8.58384 18.6194C8.59896 18.6156 8.61396 18.6119 8.62885 18.6082C8.85159 18.5528 9.04877 18.5037 9.2278 18.4023C9.40683 18.301 9.55035 18.1571 9.71248 17.9947C9.72332 17.9838 9.73425 17.9729 9.74527 17.9618L16.9393 10.7678L16.9393 10.7678L16.9626 10.7445C17.2761 10.4311 17.5461 10.1611 17.7333 9.91573C17.9339 9.65281 18.0858 9.36038 18.0858 9C18.0858 8.63961 17.9339 8.34719 17.7333 8.08427C17.5461 7.83894 17.276 7.5689 16.9626 7.2555L16.9393 7.23223L16.5858 7.58579L16.9393 7.23223L16.7678 7.06066L16.7445 7.03738C16.4311 6.72395 16.1611 6.45388 15.9157 6.2667C15.6528 6.0661 15.3604 5.91421 15 5.91421C14.6396 5.91421 14.3472 6.0661 14.0843 6.2667C13.8389 6.45388 13.5689 6.72395 13.2555 7.03739L13.2322 7.06066L6.03816 14.2547C6.02714 14.2658 6.01619 14.2767 6.00533 14.2875C5.84286 14.4496 5.69903 14.5932 5.59766 14.7722C5.4963 14.9512 5.44723 15.1484 5.39179 15.3711C5.38809 15.386 5.38435 15.401 5.38057 15.4162L4.71704 18.0703C4.71483 18.0791 4.7126 18.088 4.71036 18.097C4.67112 18.2537 4.62921 18.421 4.61546 18.5615C4.60032 18.7163 4.60385 18.9773 4.81326 19.1867C5.02267 19.3961 5.28373 19.3997 5.43846 19.3845C5.57899 19.3708 5.74633 19.3289 5.90301 19.2896C5.91195 19.2874 5.92085 19.2852 5.92971 19.283Z" stroke="#89B53D"/>
-                                                    <path d="M12.5 7.5L15.5 5.5L18.5 8.5L16.5 11.5L12.5 7.5Z" fill="#89B53D"/> --}}
-                                                
-                                                {{-- <h3 class="text-[#89B53D] ml-2">Tambahkan Catatan</h3>
+                                                    <path d="M12.5 7.5L15.5 5.5L18.5 8.5L16.5 11.5L12.5 7.5Z" fill="#89B53D"/>
+
+                                                <h3 class="text-[#89B53D] ml-2">Tambahkan Catatan</h3>
                                             </button>
                                             <div id="catatanInputText" class="hidden">
                                                 <textarea name="catatan" class="w-full rounded-lg border-[#89B53D] border" placeholder="Contoh: Yang beratnya lebih dari 2kg ya"></textarea>
                                                 <button type="button" onclick="hideCatatanInput()" class="font-bold text-[#89B53D] mt-2">
                                                     Batalkan Catatan
-                                                </button> --}}
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- <div class="flex flex-col gap-y-6">
+                                    <div class="flex flex-col gap-y-6">
                                         <div class="flex justify-between font-bold">
                                             <h1>SubTotal</h1>
                                             <p class="mr-5">@currency(0)</p>
@@ -116,9 +125,9 @@
                                                 'productSlug'=> "ikan arwana",
                                                 'quantity' => "1",
                                                 'price' => "10000"
-                                            ]) --}}
-                                            {{-- <livewire:cart-button-component :sellerSlug="{{ $seller['slug'] }}" :productSlug="{{ $productData['slug'] }}" :quantity="2" /> --}}
-                                            {{-- <button type="submit" class="p-2 bg-white text-center border-[#89B53D] border font-bold text-[#89B53D] rounded-md">
+                                            ])
+
+                                            <button type="submit" class="p-2 bg-white text-center border-[#89B53D] border font-bold text-[#89B53D] rounded-md">
                                                 <span>Beli Langsung</span>
                                             </button>
                                         </div>
@@ -142,10 +151,10 @@
                                                 <h1>Bagikan</h1>
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </div>
                             </form>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -153,81 +162,79 @@
             <div class="flex flex-col gap-y-11">
                 <h2 class="font-bold text-[20px]">Produk Lainnya</h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-16">
-                @foreach ($umkm_all_detail['otherProducts'] as $product)
+                    @foreach ($umkm_all_detail['otherProducts'] as $product)
                         {{-- @foreach ($seller['products'] as $product) --}}
-                            {{-- @if ($product['slug'] !== $productData['slug']) --}}
-                                @component('components.product-card')
-                                    @slot('productImage')
-                                    {{ !empty($product['image']) && @getimagesize('https://api.andamantau.com/' . $product['image']) ? 'https://api.andamantau.com/' . $product['image'] :  asset('assets/images/noimage.png') }}
-                                    @endslot
-                                    @slot('productUrl')
-                                        /toko/{{ $umkm_all_detail['slug-umkm'] }}/products/{{$umkm_all_detail['slug-product'] }}
-                                    @endslot
-                                    @slot('productTitle')
-                                        {{ $product['name'] }}
-                                    @endslot
-                                    {{-- @slot('productLocation')
+                        {{-- @if ($product['slug'] !== $productData['slug']) --}}
+                        @component('components.product-card')
+                            @slot('productImage')
+                                {{ !empty($product['image']) && @getimagesize('https://api.andamantau.com/' . $product['image']) ? 'https://api.andamantau.com/' . $product['image'] : asset('assets/images/noimage.png') }}
+                            @endslot
+                            @slot('productUrl')
+                                /toko/{{ $umkm_all_detail['slug-umkm'] }}/products/{{ $umkm_all_detail['slug-product'] }}
+                            @endslot
+                            @slot('productTitle')
+                                {{ $product['name'] }}
+                            @endslot
+                            {{-- @slot('productLocation')
                                         {{ $seller['location'] }}
                                     @endslot --}}
-                                    @slot('productPrice')
-                                    @currency($product['price'])
-                                    @endslot
-                                    @slot('productSeller')
-                                        {{ $umkm_all_detail['umkm']["umkm_name"] }}
-                                    @endslot
-                                    @slot('isPromo')
-                                        false
-                                    @endslot
-                                @endcomponent
-                            {{-- @endif --}}
+                            @slot('productPrice')
+                                @currency($product['price'])
+                            @endslot
+                            @slot('productSeller')
+                                {{ $umkm_all_detail['umkm']['umkm_name'] }}
+                            @endslot
+                            @slot('isPromo')
+                                false
+                            @endslot
+                        @endcomponent
+                        {{-- @endif --}}
 
                         {{-- @endforeach --}}
-                        @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
 
-@push('scripts')
-<script>
+    @push('scripts')
+        <script>
+            function updateMainImage(index) {
+                // Get references to the main image and thumbnail images
+                const mainImage = document.getElementById('mainImage');
+                const thumbnailImages = document.querySelectorAll('.thumbnail-image');
 
-    function updateMainImage(index){
-        // Get references to the main image and thumbnail images
-        const mainImage = document.getElementById('mainImage');
-        const thumbnailImages = document.querySelectorAll('.thumbnail-image');
+                let tempMainImage = mainImage.src;
 
-        let tempMainImage = mainImage.src;
+                // Update the main image source with the clicked thumbnail's source
+                mainImage.src = thumbnailImages[index].src;
 
-        // Update the main image source with the clicked thumbnail's source
-        mainImage.src = thumbnailImages[index].src;
+                thumbnailImages[index].addEventListener('click', () => {
+                    tempMainImage = mainImage.src;
+                });
 
-        thumbnailImages[index].addEventListener('click', () => {
-            tempMainImage = mainImage.src;
-        });
+                thumbnailImages[index].addEventListener('mouseout', () => {
+                    mainImage.src = tempMainImage;
+                });
+            }
 
-        thumbnailImages[index].addEventListener('mouseout', () => {
-            mainImage.src = tempMainImage;
-        });
-    }
+            function showCatatanInput() {
+                const showCatatanButton = document.getElementById('showCatatanButton');
+                const catatanInputText = document.getElementById('catatanInputText');
 
-    function showCatatanInput() {
-        const showCatatanButton = document.getElementById('showCatatanButton');
-        const catatanInputText = document.getElementById('catatanInputText');
+                showCatatanButton.classList.add('hidden');
+                catatanInputText.classList.remove('hidden');
+            }
 
-        showCatatanButton.classList.add('hidden');
-        catatanInputText.classList.remove('hidden');
-    }
+            function hideCatatanInput() {
+                const showCatatanButton = document.getElementById('showCatatanButton');
+                const catatanInputText = document.getElementById('catatanInputText');
 
-    function hideCatatanInput() {
-        const showCatatanButton = document.getElementById('showCatatanButton');
-        const catatanInputText = document.getElementById('catatanInputText');
+                showCatatanButton.classList.remove('hidden');
+                catatanInputText.classList.add('hidden');
+            }
 
-        showCatatanButton.classList.remove('hidden');
-        catatanInputText.classList.add('hidden');
-    }
-
-    const input = document.getElementById('quantity');
-    const buyNowButton = document.getElementById('buyNowButton');
-
-</script>
-@endpush
+            const input = document.getElementById('quantity');
+            const buyNowButton = document.getElementById('buyNowButton');
+        </script>
+    @endpush

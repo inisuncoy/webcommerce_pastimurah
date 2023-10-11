@@ -12,36 +12,35 @@
         @csrf
     <div class="flex-col hidden md:flex md:cols-span-1 gap-y-5">
         <h1 class="font-bold text-[24px]"></h1>
-        <div class="flex flex-col p-5 bg-white rounded-lg shadow-lg gap-y-7">
-            {{-- <div class="flex items-center font-normal gap-x-5">
+        {{-- <div class="flex flex-col p-5 bg-white rounded-lg shadow-lg gap-y-7">
+            <div class="flex items-center font-normal gap-x-5">
                 <input type="checkbox" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
                 <label for="">Semua</label>
-            </div> --}}
+            </div>
             <div class="flex flex-col font-normal gap-y-2">
-                {{-- <div class="flex items-center gap-x-5">
+                <div class="flex items-center gap-x-5">
                     <input type="checkbox" name="province[]" id="DKI Jakarta" value="DKI-Jakarta" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
                     <label for="DKI Jakarta">DKI Jakarta</label>
-                </div> --}}
-                {{-- <div class="flex items-center gap-x-5">
+                </div>
+                <div class="flex items-center gap-x-5">
                     <input type="checkbox" name="province[]" id="Sulawesi Selatan" value="Sulawesi-Selatan" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
                     <label for="Sulawesi Selatan">Sulawesi Selatan</label>
-                </div> --}}
-                
-                {{-- <div class="font-normal text-[#89B53D] pt-3">
+                </div>
+                <div class="font-normal text-[#89B53D] pt-3">
                     <button id="openModalButton" onclick="openModal()" data-modal-data='https://drive.google.com/file/d/1jIYUGnLryU_yGtTn7qI-Nt6EnW2mVFwp/preview' type="button">Lihat Selengkapnya</button>
-                </div> --}}
+                </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
 </form>
     <div class="flex flex-col md:col-span-4 gap-y-6">
         <div class="relative flex md:justify-end">
-            
-        <form action="/toko/search" method="POST" class="w-full"> 
+
+        <form action="/toko/search" method="POST" class="w-full">
             @csrf
             <input type="text"name="query" id="query" class="w-full rounded-lg text-[15px] md:text-[17px] py-2.5 pl-12 md:pl-14 md:py-3" placeholder="Cari Nama UMKM" value="{{ old('query') }}">
-        </form> 
+        </form>
             <span class="absolute left-3 top-[10px] md:top-2.5">
                 <svg class="w-[24px] h-[24px] md:w-[30px] md:h-[30px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="11" cy="11" r="6" stroke="#222222" stroke-opacity="0.5"/>
@@ -136,7 +135,7 @@
                 </div>
                 <form id="myForm1" action="/toko/filter" method="GET">
                     @csrf
-                <div class="grid w-full grid-cols-3 p-5">
+                <div class="grid w-full grid-cols-3 gap-x-2 p-2">
                     <div class="flex flex-col gap-y-3">
 
                         <div class="flex flex-col">
@@ -154,7 +153,7 @@
                             <div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Aceh" value="Aceh" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Aceh">Aceh</label>
+                                    <label class="text-[15px]" for="Aceh">Aceh</label>
                                 </div>
                             </div>
                         </div>
@@ -164,19 +163,19 @@
                             <div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Bali" value="Bali" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Bali">Bali</label>
+                                    <label class="text-[15px]" for="Bali">Bali</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Bangka Belitung" value="Bangka-Belitung" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Bangka Belitung">Bangka Belitung</label>
+                                    <label class="text-[15px]" for="Bangka Belitung">Bangka Belitung</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Banten" value="Banten" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Banten">Banten</label>
+                                    <label class="text-[15px]" for="Banten">Banten</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Bengkulu" value="Bengkulu" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Bengkulu">Bengkulu</label>
+                                    <label class="text-[15px]" for="Bengkulu">Bengkulu</label>
                                 </div>
                             </div>
                         </div>
@@ -186,11 +185,11 @@
                             <div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Daerah-Istimewa-Yogyakarta" value="Daerah Istimewa Yogyakarta" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Daerah Istimewa Yogyakarta">Daerah Istimewa Yogyakarta</label>
+                                    <label class="text-[15px]" for="Daerah Istimewa Yogyakarta">Daerah Istimewa Yogyakarta</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="DKI Jakarta" value="DKI-Jakarta" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="DKI Jakarta">DKI Jakarta</label>
+                                    <label class="text-[15px]" for="DKI Jakarta">DKI Jakarta</label>
                                 </div>
                             </div>
                         </div>
@@ -200,7 +199,7 @@
                             <div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Gorontalo" value="Gorontalo" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Gorontalo">Gorontalo</label>
+                                    <label class="text-[15px]" for="Gorontalo">Gorontalo</label>
                                 </div>
                             </div>
                         </div>
@@ -210,19 +209,19 @@
                             <div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Jambi" value="Jambi" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Jambi">Jambi</label>
+                                    <label class="text-[15px]" for="Jambi">Jambi</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Jawa Barat" value="Jawa-Barat" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Jawa Barat">Jawa Barat</label>
+                                    <label class="text-[15px]" for="Jawa Barat">Jawa Barat</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Jawa Tengah" value="Jawa-Tengah" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Jawa Tengah">Jawa Tengah</label>
+                                    <label class="text-[15px]" for="Jawa Tengah">Jawa Tengah</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Jawa Timur" value="Jawa-Timur" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Jawa Timur">Jawa Timur</label>
+                                    <label class="text-[15px]" for="Jawa Timur">Jawa Timur</label>
                                 </div>
 
                             </div>
@@ -235,27 +234,27 @@
                             <div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Kalimantan Barat" value="Kalimantan-Barat" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Kalimantan Barat">Kalimantan Barat</label>
+                                    <label class="text-[15px]" for="Kalimantan Barat">Kalimantan Barat</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Kalimantan Selatan" value="Kalimantan-Selatan" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Kalimantan Selatan">Kalimantan Selatan</label>
+                                    <label class="text-[15px]" for="Kalimantan Selatan">Kalimantan Selatan</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Kalimantan Tengah" value="Kalimantan-Tengah" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Kalimantan Tengah">Kalimantan Tengah</label>
+                                    <label class="text-[15px]" for="Kalimantan Tengah">Kalimantan Tengah</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Kalimantan Timur" value="Kalimantan-Timur" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Kalimantan Timur">Kalimantan Timur</label>
+                                    <label class="text-[15px]" for="Kalimantan Timur">Kalimantan Timur</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Kalimantan Utara" value="Kalimantan-Utara" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Kalimantan Utara">Kalimantan Utara</label>
+                                    <label class="text-[15px]" for="Kalimantan Utara">Kalimantan Utara</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Kepulauan Riau" value="Kepulauan-Riau" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Kepulauan Riau">Kepulauan Riau</label>
+                                    <label class="text-[15px]" for="Kepulauan Riau">Kepulauan Riau</label>
                                 </div>
                             </div>
                         </div>
@@ -265,7 +264,7 @@
                             <div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Lampung" value="Lampung" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Lampung">Lampung</label>
+                                    <label class="text-[15px]" for="Lampung">Lampung</label>
                                 </div>
                             </div>
                         </div>
@@ -275,11 +274,11 @@
                             <div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Maluku" value="Maluku" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="aluku">Maluku</label>
+                                    <label class="text-[15px]" for="aluku">Maluku</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Maluku Utara" value="Maluku-Utara" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Maluku Utara">Maluku Utara</label>
+                                    <label class="text-[15px]" for="Maluku Utara">Maluku Utara</label>
                                 </div>
                             </div>
                         </div>
@@ -289,11 +288,11 @@
                             <div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Nusa Tenggara Barat" value="Nusa-Tenggara-Barat" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Nusa Tenggara Barat">Nusa Tenggara Barat</label>
+                                    <label class="text-[15px]" for="Nusa Tenggara Barat">Nusa Tenggara Barat</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Nusa Tenggara Timur" value="Nusa-Tenggara-Timur" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Nusa Tenggara Timur">Nusa Tenggara Timur</label>
+                                    <label class="text-[15px]" for="Nusa Tenggara Timur">Nusa Tenggara Timur</label>
                                 </div>
                             </div>
                         </div>
@@ -303,7 +302,7 @@
                             <div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Riau" value="Riau" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Riau">Riau</label>
+                                    <label class="text-[15px]" for="Riau">Riau</label>
                                 </div>
                             </div>
                         </div>
@@ -315,35 +314,35 @@
                             <div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Sulawesi Barat" value="Sulawesi-Barat" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Sulawesi Barat">Sulawesi Barat</label>
+                                    <label class="text-[15px]" for="Sulawesi Barat">Sulawesi Barat</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Sulawesi Selatan" value="Sulawesi-Selatan" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Sulawesi Selatan">Sulawesi Selatan</label>
+                                    <label class="text-[15px]" for="Sulawesi Selatan">Sulawesi Selatan</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Sulawesi Tengah" value="Sulawesi-Tengah" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Sulawesi Tengah">Sulawesi Tengah</label>
+                                    <label class="text-[15px]" for="Sulawesi Tengah">Sulawesi Tengah</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Sulawesi Tenggara" value="Sulawesi-Tenggara" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Sulawesi Tenggara">Sulawesi Tenggara</label>
+                                    <label class="text-[15px]" for="Sulawesi Tenggara">Sulawesi Tenggara</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Sulawesi Utara" value="Sulawesi-Utara" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Sulawesi Utara">Sulawesi Utara</label>
+                                    <label class="text-[15px]" for="Sulawesi Utara">Sulawesi Utara</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Sumatera Barat" value="Sumatera-Barat" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Sumatera Barat">Sumatera Barat</label>
+                                    <label class="text-[15px]" for="Sumatera Barat">Sumatera Barat</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Sumatera Selatan" value="Sumatera-Selatan" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Sumatera Selatan">Sumatera Selatan</label>
+                                    <label class="text-[15px]" for="Sumatera Selatan">Sumatera Selatan</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Sumatera Utara" value="Sumatera-Utara" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Sumatera Utara">Sumatera Utara</label>
+                                    <label class="text-[15px]" for="Sumatera Utara">Sumatera Utara</label>
                                 </div>
                             </div>
                         </div>
@@ -353,27 +352,27 @@
                             <div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Papua" value="Papua" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Papua">Papua</label>
+                                    <label class="text-[15px]" for="Papua">Papua</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Papua Barat" value="Papua-Barat" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Papua Barat">Papua Barat</label>
+                                    <label class="text-[15px]" for="Papua Barat">Papua Barat</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Papua Barat Daya" value="Papua-Barat-Daya" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Papua Barat Daya">Papua Barat Daya</label>
+                                    <label class="text-[15px]" for="Papua Barat Daya">Papua Barat Daya</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Papua Pegunungan" value="Papua-Pegunungan" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Papua Pegunungan">Papua Pegunungan</label>
+                                    <label class="text-[15px]" for="Papua Pegunungan">Papua Pegunungan</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Papua Selatan" value="Papua-Selatan" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Papua Selatan">Papua Selatan</label>
+                                    <label class="text-[15px]" for="Papua Selatan">Papua Selatan</label>
                                 </div>
                                 <div class="flex items-center gap-x-2">
                                     <input type="checkbox" name="province[]" id="Papua Tengah" value="Papua-Tengah" class="rounded-[4px] border-[#89B53D] border-2 checked:bg-[#89B53D] focus:ring-transparent w-5 h-5">
-                                    <label for="Papua Tengah">Papua Tengah</label>
+                                    <label class="text-[15px]" for="Papua Tengah">Papua Tengah</label>
                                 </div>
                             </div>
                         </div>
