@@ -170,7 +170,7 @@
                                 {{ !empty($product['image']) && @getimagesize('https://api.andamantau.com/' . $product['image']) ? 'https://api.andamantau.com/' . $product['image'] : asset('assets/images/noimage.png') }}
                             @endslot
                             @slot('productUrl')
-                                /toko/{{ $umkm_all_detail['slug-umkm'] }}/products/{{ $umkm_all_detail['slug-product'] }}
+                                /toko/{{ $umkm_all_detail['slug-umkm'] }}/products/{{ $product['slug-product'] }}
                             @endslot
                             @slot('productTitle')
                                 {{ $product['name'] }}
@@ -233,7 +233,6 @@
                 showCatatanButton.classList.remove('hidden');
                 catatanInputText.classList.add('hidden');
             }
-
             const input = document.getElementById('quantity');
             const buyNowButton = document.getElementById('buyNowButton');
         </script>

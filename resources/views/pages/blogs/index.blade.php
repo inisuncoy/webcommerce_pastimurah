@@ -3,10 +3,10 @@
 @section('pages')
 <div class="flex flex-col px-5 md:px-20 pt-14 gap-y-10">
     <div class="flex items-center justify-between pb-2 border-b border-black">
-        <h1 class="font-bold text-[22px] md:text-[25px]">Blog UMKM Terkini</h1>
+        <h1 class="font-bold text-[22px] md:text-[25px]">Berita UMKM Terkini</h1>
         <div class="flex items-center gap-x-2">
             <div class="items-center hidden md:flex gap-x-2 ">
-                <form id="sortingForm" method="GET" action=" /blogs/filter">
+                <form id="sortingForm" method="GET" action=" /berita/filter">
                     <h1 class="font-bold">Urutkan: </h1>
                     <select id="sortingSelect" name="sorting" class="bg-white text-black pl-4 rounded-md w-full border-[#89B53D] border font-[500]">
                         <option value="terbaru" selected>Semua</option>
@@ -21,7 +21,7 @@
             <div id="modal" class="modal fixed inset-0 z-50 flex items-center justify-center hidden">
                 <div class="modal-content bg-white p-6 rounded-lg shadow-lg">
                     <div class="items-center gap-x-2">
-                        <form id="modalSortingForm" method="GET" action="/blogs/filter">
+                        <form id="modalSortingForm" method="GET" action="/berita/filter">
                             <h1 class="font-bold">Urutkan: </h1>
                             <select id="modalSortingSelect" name="sorting" class="bg-white text-black pl-4 rounded-md w-full border-[#89B53D] border font-[500]">
                                 <option value="terbaru" selected>Semua</option>
@@ -44,7 +44,7 @@
     <div class="grid grid-cols-1 md:px-5 md:grid-cols-3 gap-x-5 gap-y-5 md:gap-y-20">
         @foreach ($news as $new)
     {{-- @foreach ($seller["news"] as $new) --}}
-            <a href="/toko/{{ $new['slug-umkm'] }}/blogs/{{ $new["slug-title"] }}" class="p-4 bg-white rounded-xl drop-shadow-lg md:min-w-[400px]">
+            <a href="/toko/{{ $new['slug-umkm'] }}/berita/{{ $new["slug-title"] }}" class="p-4 bg-white rounded-xl drop-shadow-lg md:min-w-[400px]">
                 <div class="flex flex-col justify-center">
                     <img src={{ !empty($new["image"]) ? 'https://api.andamantau.com/' . $new["image"] : asset('assets/images/noimage.png') }} alt="product" class="object-cover w-full h-42 md:h-64">
                     <div class="flex flex-col pt-4 gap-y-2">

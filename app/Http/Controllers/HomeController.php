@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
+
 use App\Http\Controllers\CarouselrController;
 class HomeController extends Controller
 {
@@ -38,18 +39,13 @@ class HomeController extends Controller
 
          
             $responseNewsData = json_decode($responseNews->getBody(), true);   
-            // dd($response);
-
-            // dd($responseNewsData);
-            $news = [];
+           
             if ($response->getStatusCode() === 200) {
                 $responseData = json_decode($response->getBody(), true);       
-                
-                // dd($responseData)['data'];
-                // dd($responseNewsData['data']);
+                $umkm_data = array_slice($responseData['data'], 0, 10);
+               
                 return view('pages.landing-page.index', [
-                    'umkm_data' => $responseData['data'],
-                    // 'seller' => $sellers,
+                    'umkm_data' =>$umkm_data ,
                     'news' => $responseNewsData['data'],
                     'carousel_data'=>$data_highlight['carousel_data']["data"]
                 ]);
