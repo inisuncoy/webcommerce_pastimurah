@@ -21,8 +21,8 @@ class SellersController extends Controller
             'query' => $request->input('query'),
 
         ];
-
-
+        $checkboxStates = [];
+        
         // dd($sendData);
         $apiBaseUrl = 'https://api.andamantau.com/public_html/api/w/umkm/list';
         $yourToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5hbmRhbWFudGF1LmNvbS9wdWJsaWNfaHRtbC9hcGkvbG9naW4iLCJpYXQiOjE2OTUxOTYyNjksImV4cCI6MTY5NTE5OTg2OSwibmJmIjoxNjk1MTk2MjY5LCJqdGkiOiJ5c0t2bXdVa1J1dm9RcjNWIiwic3ViIjoiNSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.4qULjcgQRUIyckVuUxzbx70owTYNK483DphDobQiePo";
@@ -41,7 +41,7 @@ class SellersController extends Controller
                 $responseData = json_decode($response->getBody(), true);
                 return view('pages.sellers.index', [
                     'umkm_data' => $responseData['data'],
-
+                    'checkboxStates' => $checkboxStates,
 
                 ]);
             } else {
@@ -55,6 +55,7 @@ class SellersController extends Controller
 
     public function SearchUMKM(Request $request)
     {
+        $checkboxStates = [];
         $yourToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwaS5hbmRhbWFudGF1LmNvbS9hcGkvbG9naW4iLCJpYXQiOjE2OTU5MTUyOTYsImV4cCI6MTY5NjUyMDA5NiwibmJmIjoxNjk1OTE1Mjk2LCJqdGkiOiJIOFlIWUNwZkpxWGJKMG96Iiwic3ViIjoiNSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.Oof2r4AqxMOvSMgzMW_JzDSiTsSfESDa538O5tlr6vI";
         $request->validate([
             'query' => 'required|string|',
@@ -93,7 +94,7 @@ class SellersController extends Controller
                 // dd($responseData);
                 return view('pages.sellers.index', [
                     'umkm_data' => $responseData['data'],
-
+                    'checkboxStates' => $checkboxStates,
 
                 ]);
             } else {
@@ -114,7 +115,8 @@ class SellersController extends Controller
 
         // Join the "province" values with commas
         $provinceQueryParam = implode(',', $provinces);
-
+        session(['checkboxStates' => $provinces]);
+        
         $queryParams = [
             'province' => $provinceQueryParam,
         ];
@@ -140,12 +142,16 @@ class SellersController extends Controller
 
             if ($response->getStatusCode() === 200) {
                 $responseData = json_decode($response->getBody(), true);
-                // dd($responseData);
+                $savedCheckboxStates = session('checkboxStates', []);
                 return view('pages.sellers.index', [
                     'umkm_data' => $responseData['data'],
-
+                    // 'selectedOptions'=>$selectedOptions,
+                    'checkboxStates' => $savedCheckboxStates,
 
                 ]);
+
+
+               
             }
         } catch (RequestException $e) {
             return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
@@ -161,8 +167,8 @@ class SellersController extends Controller
         $client = new Client();
         $selectedOptions = $selectedOptions ?? [];
         $provinces =  $request->input('province', []);
-
-        // Join the "province" values with commas
+        session(['checkboxStates' => $provinces]);
+        
         $provinceQueryParam = implode(',', $provinces);
         
         $queryParams = [
@@ -191,9 +197,11 @@ class SellersController extends Controller
             if ($response->getStatusCode() === 200) {
                 $responseData = json_decode($response->getBody(), true);
                 // dd($responseData);
+                $savedCheckboxStates = session('checkboxStates', []);
                 return view('pages.sellers.index', [
                     'umkm_data' => $responseData['data'],
                     // 'selectedOptions'=>$selectedOptions,
+                    'checkboxStates' => $savedCheckboxStates,
 
                 ]);
             }
