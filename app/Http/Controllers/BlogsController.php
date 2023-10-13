@@ -84,46 +84,44 @@ class BlogsController extends Controller
      */
     public function show(Request $request)
     {
-        
         $client = new Client();
         $NewsName = str_replace('-', ' ', $request->segment(4));
-        // dd($NewsName);
+    
+        // Define the regex pattern to check (for example, skip if NewsName matches "skipme")
+        $skipRegexPattern = '/^[A-Za-z0-9 ]+$/';
+    
+        // Check if NewsName matches the skip regex pattern and skip only the regex check
+        $skipRegexCheck = preg_match($skipRegexPattern, $NewsName);
+    
+        // Continue with the request
         $requestDataNews = [
             "query" => $NewsName,
         ];
-    //   dd($requestDataNews);
-    try {
-        $responseUMKMPNEWS = $client->post('https://api.andamantau.com/api/w/news'
-                , [
-                'headers' => [
-                    
-                    'Content-Type' => 'application/json',
-                ],
-                'body' =>  json_encode($requestDataNews),
-            ]);
-
-            $responseBodyDetail = $responseUMKMPNEWS->getBody();
-           
-            $responseBodyDetail = json_decode($responseBodyDetail, true);
-
-            // dd($responseBodyDetail);
-
-            if ($responseUMKMPNEWS->getStatusCode() === 200) {
-            
-                return view('pages.blogs.blog.index', [
-                
-                    'news'=>$responseBodyDetail['data'],
-                  
+    
+        try {
+            // Skip the regex check
+            if (!$skipRegexCheck) {
+                $responseUMKMPNEWS = $client->post('https://api.andamantau.com/api/w/news', [
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                    ],
+                    'body' => json_encode($requestDataNews),
                 ]);
-            } else {
-                return abort(404);
+    
+                $responseBodyDetail = $responseUMKMPNEWS->getBody();
+                $responseBodyDetail = json_decode($responseBodyDetail, true);
+    
+                if ($responseUMKMPNEWS->getStatusCode() === 200) {
+                    return view('pages.blogs.blog.index', [
+                        'news' => $responseBodyDetail['data'],
+                    ]);
+                }
             }
-
-        }catch (RequestException $e) {
+    
+        } catch (RequestException $e) {
             return view('pages.404.index');
         }
     }
-
     /**
      * Show the form for editing the specified resource.
      */

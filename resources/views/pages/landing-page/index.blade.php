@@ -35,7 +35,7 @@
         </div>
         <div class="flex flex-wrap gap-8 px-10 pb-10 md:overflow-x-scroll md:px-20 md:flex-nowrap ">
             @foreach ($news as $new)
-            <a href="/toko/{{ $new['slug-umkm'] }}/blogs/{{ $new["slug-title"] }}" class="  p-4 bg-white rounded-xl drop-shadow-lg md:min-w-[400px]">
+            <a href="/toko/{{ $new['slug-umkm'] }}/berita/{{ $new["slug-title"] }}" class="  p-4 bg-white rounded-xl drop-shadow-lg md:min-w-[400px]">
                 <div class="flex flex-col justify-center  ">
                     <div class="">
                     <img src={{"https://api.andamantau.com/". $new["image"] }} alt="product" class="object-cover w-full h-42 md:h-64">
