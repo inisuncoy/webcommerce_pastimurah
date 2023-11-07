@@ -1,35 +1,36 @@
 
+
 <div id="default-carousel" class="relative w-full pt-8 pb-12 md:py-10 mb-0 overflow-hidden" data-carousel="slide">
     <!-- Carousel wrapper -->
     <div class="relative h-56 rounded-lg md:h-96 overflow-y:visible "> 
          <!-- Item 1 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-            <a href="https://andamantau.com/toko/praisel-bakery" target="_blank" rel="noopener noreferrer">
+            <a href="/toko/{{ $carousel_data[0]['slug'] }}/products/{{ $carousel_data[0]['slug_product_name'] }}" target="_blank" rel="noopener noreferrer">
             <img src={{ "https://api.andamantau.com/".$carousel_data[0]['image'] }} class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
         </a>
         </div> 
 
         <!-- Item 2 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-            <a href="https://andamantau.com/toko/bakmi-efatta" target="_blank" rel="noopener noreferrer">
+            <a href="/toko/{{ $carousel_data[1]['slug'] }}/products/{{ $carousel_data[1]['slug_product_name'] }}"target="_blank" rel="noopener noreferrer">
                 <img src={{ "https://api.andamantau.com/".$carousel_data[1]['image'] }}  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
             </a>
         </div> 
         <!-- Item 3 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-            <a href="https://andamantau.com/toko/snippy-burger" target="_blank" rel="noopener noreferrer">
+            <a href="/toko/{{ $carousel_data[2]['slug'] }}/products/{{ $carousel_data[2]['slug_product_name'] }}" target="_blank" rel="noopener noreferrer">
                 <img src={{ "https://api.andamantau.com/".$carousel_data[2]['image'] }}  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
             </a>
         </div> 
         <!-- Item 4 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-            <a href="https://andamantau.com/toko/snippy-burger" target="_blank" rel="noopener noreferrer">
+            <a href="/toko/{{ $carousel_data[3]['slug'] }}/products/{{ $carousel_data[3]['slug_product_name'] }}" target="_blank" rel="noopener noreferrer">
                 <img src={{ "https://api.andamantau.com/".$carousel_data[3]['image'] }}  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
             </a>
         </div> 
         <!-- Item 5 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-            <a href="https://andamantau.com/toko/sugeng-jaya-farm" target="_blank" rel="noopener noreferrer">
+            <a href="/toko/{{ $carousel_data[4]['slug'] }}/products/{{ $carousel_data[4]['slug_product_name'] }}" target="_blank" rel="noopener noreferrer">
                 <img src={{ "https://api.andamantau.com/".$carousel_data[4]['image'] }}  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
             </a>
         </div> 

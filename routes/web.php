@@ -29,24 +29,25 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/buy-now', [BuyNowController::class, 'index']);
 
 Route::get('/checkout', [CheckoutController::class, 'index']);
+Route::get('/toko', [SellersController::class, 'index'])->name('sellers.index')->middleware('web');
+
 Route::get('/toko/filter', [SellersController::class, 'filter']);
 Route::get('/toko/filters', [SellersController::class, 'filterCard']);
-Route::get('/toko', [SellersController::class, 'index']);
+
 Route::post('/toko/search', [SellersController::class, 'SearchUMKM']);
-Route::get('/toko/{slug}', [SellersController::class, 'show']);
+Route::get('/toko/{slug}', [SellersController::class, 'show'])->where('slug', '^[a-zA-Z0-9-_]+$');
 
 
-
+Route::post('/toko/{sellerSlug}/berita/{newSlug}', [BlogsController::class, 'show']);
 Route::get('/toko/{sellerSlug}/products/{productSlug}', [SellerProductsController::class, 'show']);
 
-Route::get('/berita', [BlogsController::class, 'index']);
-Route::get('/toko/{sellerSlug}/berita/{newSlug}', [BlogsController::class, 'show']);
+Route::get('/berita', [BlogsController::class, 'index'])->name('pages.blogs.index');
 Route::get('/berita/filter', [BlogsController::class, 'Oldest_News']);
 
 
-Route::get('/billing', function (Request $request) {
-    return view("pages.billing.index");
-});
+// Route::get('/billing', function (Request $request) {
+//     return view("pages.billing.index");
+// });
 Route::get('/cart', function () {
     return view("pages.cart.index");
 })->name("cart");

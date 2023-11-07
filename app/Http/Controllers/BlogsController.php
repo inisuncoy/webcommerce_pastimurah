@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
-
+use Illuminate\Pagination\LengthAwarePaginator;
 class BlogsController extends Controller
 {
     /**
@@ -35,21 +35,35 @@ class BlogsController extends Controller
                 ],
             ]);
 
-            
+           
             $responseNewsData = json_decode($responseNews->getBody(), true);   
             // dd($response);
-
             // dd($responseNewsData);
-            $news = [];
+            // dd($responseNewsData);
+            // $news = [];
             if ($responseNews->getStatusCode() === 200) {
                 $responseData = json_decode($response->getBody(), true);       
                 
-                // dd($responseData['data']);
-                // dd($responseData['data']);
+                // $news = collect($responseNewsData['data']); // Convert the data to a collection
+    
+                // // Paginate the data
+                // $perPage = 9; // Set the number of items per page to 20
+                // $currentPage = request()->input('page', 1); // Get the current page from the request
+                // $pagedData = $news->forPage($currentPage, $perPage);
+    
+                // $news = new LengthAwarePaginator(
+                //     $pagedData,
+                //     $news->count(),
+                //     $perPage,
+                //     $currentPage,
+                //     [
+                //         'path' => url('berita') // Set the path to 'toko' route
+                //     ]
+                // );
                 return view('pages.blogs.index', [
                     'umkm_data' => $responseData['data'],
                     // 'seller' => $sellers,
-                    'news' => $responseNewsData['data'],
+                    'news' => $responseNewsData,
                 ]);
             } else {
                 return abort(404);
@@ -84,45 +98,46 @@ class BlogsController extends Controller
      */
     public function show(Request $request)
     {
-        
         $client = new Client();
-        $NewsName = str_replace('-', ' ', $request->segment(4));
-        // dd($NewsName);
+        $newsName = $request->input('newsName');
+    
+        // Remove any characters that are not hyphens, dashes, or alphanumeric
+        // $title = preg_replace('/[^A-Za-z0-9\-—]/', '', $slug);
+        
         $requestDataNews = [
-            "query" => $NewsName,
+            "query" => $newsName,
         ];
-    //   dd($requestDataNews);
-    try {
-        $responseUMKMPNEWS = $client->post('https://api.andamantau.com/api/w/news'
-                , [
+    //    dd($requestDataNews);
+        $client = new Client();
+       
+        
+            
+          
+        try {
+          
+            $responseUMKMPNEWS = $client->post('https://api.andamantau.com/api/w/news', [
                 'headers' => [
-                    
                     'Content-Type' => 'application/json',
                 ],
                 'body' =>  json_encode($requestDataNews),
             ]);
-
+    
             $responseBodyDetail = $responseUMKMPNEWS->getBody();
-           
             $responseBodyDetail = json_decode($responseBodyDetail, true);
-
             // dd($responseBodyDetail);
-
             if ($responseUMKMPNEWS->getStatusCode() === 200) {
-            
                 return view('pages.blogs.blog.index', [
-                
-                    'news'=>$responseBodyDetail['data'],
-                  
+                    'news' => $responseBodyDetail['data'],
                 ]);
             } else {
                 return abort(404);
             }
-
-        }catch (RequestException $e) {
+        } catch (RequestException $e) {
             return view('pages.404.index');
         }
     }
+    
+    
 
     
     public function Oldest_News(Request $request)
@@ -144,7 +159,7 @@ class BlogsController extends Controller
             $responseNewsData = json_decode($responseNews->getBody(), true);
             
             return view('pages.blogs.index', [
-                'news' => $responseNewsData['data'],
+                'news' => $responseNewsData,
             ]);
         } else {
             return abort(404);
@@ -161,7 +176,7 @@ class BlogsController extends Controller
             $responseNewsData = json_decode($responseNews->getBody(), true);
             
             return view('pages.blogs.index', [
-                'news' => $responseNewsData['data'],
+                'news' => $responseNewsData,
             ]);
         } else {
             return abort(404);

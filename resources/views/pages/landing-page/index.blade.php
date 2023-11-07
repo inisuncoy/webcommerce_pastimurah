@@ -33,34 +33,49 @@
         <div class="pb-8 text-center md:px-20 md:text-left">
             <h1 class="font-bold text-[30px]">Berita terkini UMKM</h1>
         </div>
-        <div class="flex flex-wrap gap-8 px-10 pb-10 md:overflow-x-scroll md:px-20 md:flex-nowrap ">
+        <div class="flex flex-wrap gap-8 px-10 pb-10 md:overflow-x-scroll md:px-20 md:flex-nowrap">
             @foreach ($news as $new)
-            <a href="/toko/{{ $new['slug-umkm'] }}/berita/{{ $new["slug-title"] }}" class="  p-4 bg-white rounded-xl drop-shadow-lg md:min-w-[400px]">
-                <div class="flex flex-col justify-center  ">
-                    <div class="">
-                    <img src={{"https://api.andamantau.com/". $new["image"] }} alt="product" class="object-cover w-full h-42 md:h-64">
-                    </div>
-
-                    <div class="flex flex-col pt-4 gap-y-2">
-                        <h1 class="font-[700] text-[18px] line-clamp-2 h-[54px]">{{ $new["title"] }}</h1>
-                        <p class="font-[400] text-[14px] text-[#696969] line-clamp-1 leading-7 my-4">
-                            {{ Str::limit($new["content"], 100) }}
-                        </p>
-                        <p class="font-[500] text-[14px] ">
-                            {{ \Carbon\Carbon::parse($new['date'])->format('d-M-Y') }}
-                        </p>
-                        <div class="flex items-center justify-end mr-3">
-                            <div  class="text-[#0645AD] mb-1">Baca Selengkapnya</div>
-                            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12.3105 18L18.1573 12L12.3105 6" stroke="#0645AD" stroke-width="2"/>
-                                <path d="M6.46377 18L12.3105 12L6.46377 6" stroke="#0645AD" stroke-width="2"/>
-                            </svg>
+            <form action="/toko/{{ $new['slug-umkm'] }}/berita/{{ $new['slug-title'] }}" method="POST" id="newsForm{{$loop->index}}" style="display: none;">
+                @csrf
+                <input type="hidden" name="newsName" value="{{ $new['title'] }}">
+            </form>
+            
+            <a href="javascript:void(0);" onclick="submitNewsName({{$loop->index}})" class="p-4 bg-white rounded-xl drop-shadow-lg md:min-w-[400px]">
+                    <div class="flex flex-col justify-center">
+                        <div>
+                            <img src="{{ "https://api.andamantau.com/" . $new["image"] }}" alt="product" class="object-cover w-full h-42 md:h-64">
+                        </div>
+                        <div class="flex flex-col pt-4 gap-y-2">
+                            <h1 class="font-[700] text-[18px] line-clamp-2 h-[54px]">{{ $new["title"] }}</h1>
+                            <p class="font-[400] text-[14px] text-[#696969] line-clamp-1 leading-7 my-4">
+                                {{ Str::limit($new["content"], 100) }}
+                            </p>
+                            <p class="font-[500] text-[14px] ">
+                                {{ \Carbon\Carbon::parse($new['date'])->format('d-M-Y') }}
+                            </p>
+                            <div class="flex items-center justify-end mr-3">
+                                <div class="text-[#0645AD] mb-1">Baca Selengkapnya</div>
+                                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.3105 18L18.1573 12L12.3105 6" stroke="#0645AD" stroke-width="2"/>
+                                    <path d="M6.46377 18L12.3105 12L6.46377 6" stroke="#0645AD" stroke-width="2"/>
+                                </svg>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
             @endforeach
         </div>
     </div>
-
 @endsection
+@push('scripts')
+
+    <script>
+
+function submitNewsName(index) {
+        document.getElementById('newsForm' + index).submit();
+    }
+       
+    </script>
+
+    
+    @endpush

@@ -29,19 +29,20 @@
                         <h1 class="text-[#89B53D] font-bold text-lg">Kategori</h1>
                         <p class="text-md">{{ $news['category'] }}</p>
                     </div>  --}}
-                    {{-- <div class="">
+                    <div class="">
                         <h1 class="text-[#89B53D] font-bold text-lg pb-2">Label</h1>
-                        <div class="flex flex-wrap w-64 text-white gap-x-2 gap-y-2"> --}}
-                            {{-- @foreach ($news['author'] as $tag)
-                                <span class="bg-[#303030] py-2 pl-2 pr-4 text-md rounded-md flex gap-x-2 items-center">
-                                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="4" cy="4" r="4" fill="#FAF8F3"/>
-                                    </svg>
-                                    {{ $tag }}
-                                </span>
-                            @endforeach --}}
-                        {{-- </div>
-                    </div> --}}
+                        <div class="flex flex-wrap w-64 text-white gap-x-2 gap-y-2"> 
+                            {{-- {{dd($news)}}; --}}
+                            @foreach ($news['labels'] as $label)
+                            <span class="bg-[#303030] py-2 pl-2 pr-4 text-md rounded-md flex gap-x-2 items-center">
+                                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="4" cy="4" r="4" fill="#FAF8F3"/>
+                                </svg>
+                                {{ $label['name'] }}
+                            </span>
+                        @endforeach
+                        </div> 
+                    </div>
                     
                 </div>
             </div>
