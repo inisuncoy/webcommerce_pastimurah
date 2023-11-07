@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ConnectException;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Log;
 class BlogsController extends Controller
 {
     /**
@@ -37,10 +38,7 @@ class BlogsController extends Controller
 
            
             $responseNewsData = json_decode($responseNews->getBody(), true);   
-            // dd($response);
-            // dd($responseNewsData);
-            // dd($responseNewsData);
-            // $news = [];
+            
             if ($responseNews->getStatusCode() === 200) {
                 $responseData = json_decode($response->getBody(), true);       
                 
@@ -66,13 +64,22 @@ class BlogsController extends Controller
                     'news' => $responseNewsData,
                 ]);
             } else {
-                return abort(404);
+                $errorMessages = [];
+                if ($response->getStatusCode() !== 200) {
+                    $errorMessages[] = 'Error fetching UMKM data: ' . $response->getReasonPhrase();
+                }
+                if ($responseNews->getStatusCode() !== 200) {
+                    $errorMessages[] = 'Error fetching news data: ' . $responseNews->getReasonPhrase();
+                }
+    
+                return view('pages.404.index', ['errorMessage' => implode(', ', $errorMessages)]);
             }
-
-
-
         } catch (RequestException $e) {
-            return view('pages.404.index');
+            Log::error('An error occurred: ' . $e->getMessage());
+            return view('pages.404.index', ['errorMessage' => 'Ada Kesalahan saat Mengambil data. Coba Lagi Nanti: ' . $e->getMessage()]);
+        } catch (ConnectException $e) {
+            Log::error('Connection error: ' . $e->getMessage());
+            return view('pages.Connection_Error.index', ['errorMessage' => 'Ada Kesalahan koneksi. Cek kembali koneksi internet Anda: ' . $e->getMessage()]);
         }
 
     }
@@ -101,13 +108,11 @@ class BlogsController extends Controller
         $client = new Client();
         $newsName = $request->input('newsName');
     
-        // Remove any characters that are not hyphens, dashes, or alphanumeric
-        // $title = preg_replace('/[^A-Za-z0-9\-—]/', '', $slug);
-        
+       
         $requestDataNews = [
             "query" => $newsName,
         ];
-    //    dd($requestDataNews);
+
         $client = new Client();
        
         
@@ -130,10 +135,20 @@ class BlogsController extends Controller
                     'news' => $responseBodyDetail['data'],
                 ]);
             } else {
-                return abort(404);
+                $errorMessages = [];
+               
+                if ($responseUMKMPNEWS->getStatusCode() !== 200) {
+                    $errorMessages[] = 'Error fetching news data: ' . $responseUMKMPNEWS->getReasonPhrase();
+                }
+    
+                return view('pages.404.index', ['errorMessage' => implode(', ', $errorMessages)]);
             }
         } catch (RequestException $e) {
-            return view('pages.404.index');
+            Log::error('An error occurred: ' . $e->getMessage());
+            return view('pages.Fetch_Error.index', ['errorMessage' => 'Ada Kesalahan saat Mengambil data. Coba Lagi Nanti: ' . $e->getMessage()]);
+        } catch (ConnectException $e) {
+            Log::error('Connection error: ' . $e->getMessage());
+            return view('pages.Connection_Error.index', ['errorMessage' => 'Ada Kesalahan koneksi. Cek kembali koneksi internet Anda: ' . $e->getMessage()]);
         }
     }
     
@@ -181,6 +196,7 @@ class BlogsController extends Controller
         } else {
             return abort(404);
         }
+    
     }}catch (RequestException $e) {
         return view('pages.404.index');
     }
