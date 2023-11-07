@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Exception\RequestException;
-
-
+use GuzzleHttp\Exception\ConnectException;
+use Illuminate\Support\Facades\Log;
 class ProductsController extends Controller
 {
     /**
@@ -72,13 +72,25 @@ class ProductsController extends Controller
                 'umkm_all_detail'=>$responseBodyDetail['data'],
                 'umkm_detail'=>$responseData['data'],
             ]);
-        } else {
-            return abort(404);
-        }
+        }else {
+            $errorMessages = [];
+           
+            if ($response->getStatusCode() !== 200) {
+                $errorMessages[] = 'Error fetching UMKM data: ' . $response->getReasonPhrase();
+            }
+            if ($responseUMKMPAll->getStatusCode() !== 200) {
+                $errorMessages[] = 'Error fetching UMKM data: ' . $responseUMKMPAll->getReasonPhrase();
+            }
+           
 
-        
+            return view('pages.Fetch_Error.index', ['errorMessage' => implode(', ', $errorMessages)]);
+        }
     } catch (RequestException $e) {
-        return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
+        Log::error('An error occurred: ' . $e->getMessage());
+        return view('pages.Fetch_Error.index', ['errorMessage' => 'Ada Kesalahan saat Mengambil data. Coba Lagi Nanti: ' . $e->getMessage()]);
+    } catch (ConnectException $e) {
+        Log::error('Connection error: ' . $e->getMessage());
+        return view('pages.Connection_Error.index', ['errorMessage' => 'Ada Kesalahan koneksi. Cek kembali koneksi internet Anda: ' . $e->getMessage()]);
     }
 }  
    
@@ -87,56 +99,56 @@ class ProductsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function addProduct(Request $request)
-    {
-        $client = new Client();
-        try {
+    // public function addProduct(Request $request)
+    // {
+    //     $client = new Client();
+    //     try {
             
-            // dd($requestDataProduct);
+    //         // dd($requestDataProduct);
          
-            $responseAdd = $client->post('https://api.andamantau.com/api/w/transaction'
-            , [
-            'headers' => [
+    //         $responseAdd = $client->post('https://api.andamantau.com/api/w/transaction'
+    //         , [
+    //         'headers' => [
                 
-                'Content-Type' => 'application/json',
-            ],
+    //             'Content-Type' => 'application/json',
+    //         ],
 
             
             
-        ]);
+    //     ]);
 
-         $responseProducttoTran = $client->post('https://api.andamantau.com/api/w/transaction/product'
-            , [
-            'headers' => [
+    //      $responseProducttoTran = $client->post('https://api.andamantau.com/api/w/transaction/product'
+    //         , [
+    //         'headers' => [
         
-                'Content-Type' => 'application/json',
-            ],]);
+    //             'Content-Type' => 'application/json',
+    //         ],]);
 
 
 
-            // dd( $responseUMKMPAll);
-            // dd($responseUMKMPAll);
+    //         // dd( $responseUMKMPAll);
+    //         // dd($responseUMKMPAll);
 
             
            
            
-        if ($responseUMKMPAll->getStatusCode() === 200) {
+    //     if ($responseUMKMPAll->getStatusCode() === 200) {
             
-            return view('pages.products.index', [
+    //         return view('pages.products.index', [
             
-                'umkm_all_detail'=>$responseBodyDetail['data'],
-                'umkm_detail'=>$responseData['data'],
-            ]);
-        } else {
-            return abort(404);
-        }
+    //             'umkm_all_detail'=>$responseBodyDetail['data'],
+    //             'umkm_detail'=>$responseData['data'],
+    //         ]);
+    //     } else {
+    //         return abort(404);
+    //     }
 
         
-    } catch (RequestException $e) {
-        return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
-    }
+    // } catch (RequestException $e) {
+    //     return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
+    // }
 
-    }
+    // }
 
     /**
      * Display the specified resource.

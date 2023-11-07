@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ConnectException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CarouselrController extends Controller
 {

@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ConnectException;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 class BlogsController extends Controller
 {
     /**
@@ -35,30 +36,50 @@ class BlogsController extends Controller
                 ],
             ]);
 
-            
+           
             $responseNewsData = json_decode($responseNews->getBody(), true);   
-            // dd($response);
-
-            // dd($responseNewsData);
-            $news = [];
+            
             if ($responseNews->getStatusCode() === 200) {
                 $responseData = json_decode($response->getBody(), true);       
                 
-                // dd($responseData['data']);
-                // dd($responseData['data']);
+                // $news = collect($responseNewsData['data']); // Convert the data to a collection
+    
+                // // Paginate the data
+                // $perPage = 9; // Set the number of items per page to 20
+                // $currentPage = request()->input('page', 1); // Get the current page from the request
+                // $pagedData = $news->forPage($currentPage, $perPage);
+    
+                // $news = new LengthAwarePaginator(
+                //     $pagedData,
+                //     $news->count(),
+                //     $perPage,
+                //     $currentPage,
+                //     [
+                //         'path' => url('berita') // Set the path to 'toko' route
+                //     ]
+                // );
                 return view('pages.blogs.index', [
                     'umkm_data' => $responseData['data'],
                     // 'seller' => $sellers,
-                    'news' => $responseNewsData['data'],
+                    'news' => $responseNewsData,
                 ]);
             } else {
-                return abort(404);
+                $errorMessages = [];
+                if ($response->getStatusCode() !== 200) {
+                    $errorMessages[] = 'Error fetching UMKM data: ' . $response->getReasonPhrase();
+                }
+                if ($responseNews->getStatusCode() !== 200) {
+                    $errorMessages[] = 'Error fetching news data: ' . $responseNews->getReasonPhrase();
+                }
+    
+                return view('pages.404.index', ['errorMessage' => implode(', ', $errorMessages)]);
             }
-
-
-
         } catch (RequestException $e) {
-            return view('pages.404.index');
+            Log::error('An error occurred: ' . $e->getMessage());
+            return view('pages.404.index', ['errorMessage' => 'Ada Kesalahan saat Mengambil data. Coba Lagi Nanti: ' . $e->getMessage()]);
+        } catch (ConnectException $e) {
+            Log::error('Connection error: ' . $e->getMessage());
+            return view('pages.Connection_Error.index', ['errorMessage' => 'Ada Kesalahan koneksi. Cek kembali koneksi internet Anda: ' . $e->getMessage()]);
         }
 
     }
@@ -82,51 +103,58 @@ class BlogsController extends Controller
     /**
      * Display the specified resource.
      */
-       public function show(Request $request)
+    public function show(Request $request)
     {
-        
         $client = new Client();
-        $NewsName = str_replace('-', ' ', $request->segment(4));
-        // dd($NewsName);
+        $newsName = $request->input('newsName');
+    
+       
         $requestDataNews = [
-            "query" => $NewsName,
+            "query" => $newsName,
         ];
-    //   dd($requestDataNews);
-    try {
-        $responseUMKMPNEWS = $client->post('https://api.andamantau.com/api/w/news'
-                , [
+
+        $client = new Client();
+       
+        
+            
+          
+        try {
+          
+            $responseUMKMPNEWS = $client->post('https://api.andamantau.com/api/w/news', [
                 'headers' => [
-                    
                     'Content-Type' => 'application/json',
                 ],
                 'body' =>  json_encode($requestDataNews),
             ]);
-
+    
             $responseBodyDetail = $responseUMKMPNEWS->getBody();
-           
             $responseBodyDetail = json_decode($responseBodyDetail, true);
-
             // dd($responseBodyDetail);
-
             if ($responseUMKMPNEWS->getStatusCode() === 200) {
-            
                 return view('pages.blogs.blog.index', [
-                
-                    'news'=>$responseBodyDetail['data'],
-                  
+                    'news' => $responseBodyDetail['data'],
                 ]);
             } else {
-                return abort(404);
+                $errorMessages = [];
+               
+                if ($responseUMKMPNEWS->getStatusCode() !== 200) {
+                    $errorMessages[] = 'Error fetching news data: ' . $responseUMKMPNEWS->getReasonPhrase();
+                }
+    
+                return view('pages.404.index', ['errorMessage' => implode(', ', $errorMessages)]);
             }
-
-        }catch (RequestException $e) {
-            return view('pages.404.index');
+        } catch (RequestException $e) {
+            Log::error('An error occurred: ' . $e->getMessage());
+            return view('pages.Fetch_Error.index', ['errorMessage' => 'Ada Kesalahan saat Mengambil data. Coba Lagi Nanti: ' . $e->getMessage()]);
+        } catch (ConnectException $e) {
+            Log::error('Connection error: ' . $e->getMessage());
+            return view('pages.Connection_Error.index', ['errorMessage' => 'Ada Kesalahan koneksi. Cek kembali koneksi internet Anda: ' . $e->getMessage()]);
         }
     }
+    
+    
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function Oldest_News(Request $request)
 {
     $sortingOption = $request->input('sorting_option');
@@ -146,7 +174,7 @@ class BlogsController extends Controller
             $responseNewsData = json_decode($responseNews->getBody(), true);
             
             return view('pages.blogs.index', [
-                'news' => $responseNewsData['data'],
+                'news' => $responseNewsData,
             ]);
         } else {
             return abort(404);
@@ -163,11 +191,12 @@ class BlogsController extends Controller
             $responseNewsData = json_decode($responseNews->getBody(), true);
             
             return view('pages.blogs.index', [
-                'news' => $responseNewsData['data'],
+                'news' => $responseNewsData,
             ]);
         } else {
             return abort(404);
         }
+    
     }}catch (RequestException $e) {
         return view('pages.404.index');
     }

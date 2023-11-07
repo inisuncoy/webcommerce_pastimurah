@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ConnectException;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\CarouselrController;
 class HomeController extends Controller
 {
@@ -50,13 +51,24 @@ class HomeController extends Controller
                     'carousel_data'=>$data_highlight['carousel_data']["data"]
                 ]);
             } else {
-                return abort(404);
+                $errorMessages = [];
+               
+                if ($response->getStatusCode() !== 200) {
+                    $errorMessages[] = 'Error fetching UMKM data: ' . $response->getReasonPhrase();
+                }
+                if ($responseNews->getStatusCode() !== 200) {
+                    $errorMessages[] = 'Error fetching news data: ' . $responseNews->getReasonPhrase();
+                }
+               
+    
+                return view('pages.Fetch_Error.index', ['errorMessage' => implode(', ', $errorMessages)]);
             }
-
-
-
         } catch (RequestException $e) {
-            return view('pages.404.index');
+            Log::error('An error occurred: ' . $e->getMessage());
+            return view('pages.Fetch_Error.index', ['errorMessage' => 'Ada Kesalahan saat Mengambil data. Coba Lagi Nanti: ' . $e->getMessage()]);
+        } catch (ConnectException $e) {
+            Log::error('Connection error: ' . $e->getMessage());
+            return view('pages.Connection_Error.index', ['errorMessage' => 'Ada Kesalahan koneksi. Cek kembali koneksi internet Anda: ' . $e->getMessage()]);
         }
 
 

@@ -6,6 +6,10 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 
+use GuzzleHttp\Exception\ConnectException;
+
+use Illuminate\Support\Facades\Log;
+
 
 class SellersController extends Controller
 
@@ -45,12 +49,24 @@ class SellersController extends Controller
 
                 ]);
             } else {
-                return abort(404);
+                $errorMessages = [];
+               
+                if ($response->getStatusCode() !== 200) {
+                    $errorMessages[] = 'Error fetching UMKM data: ' . $response->getReasonPhrase();
+                }
+
+               
+    
+                return view('pages.Fetch_Error.index', ['errorMessage' => implode(', ', $errorMessages)]);
             }
         } catch (RequestException $e) {
-            return view('pages.404.index');
-        }
-    }
+            Log::error('An error occurred: ' . $e->getMessage());
+            return view('pages.Fetch_Error.index', ['errorMessage' => 'Ada Kesalahan saat Mengambil data. Coba Lagi Nanti: ' . $e->getMessage()]);
+        } catch (ConnectException $e) {
+            Log::error('Connection error: ' . $e->getMessage());
+            return view('pages.Connection_Error.index', ['errorMessage' => 'Ada Kesalahan koneksi. Cek kembali koneksi internet Anda: ' . $e->getMessage()]);
+        
+    }}
 
 
     public function SearchUMKM(Request $request)
@@ -74,8 +90,6 @@ class SellersController extends Controller
 
 
         try {
-
-
             $responseSearch = $client->post(
                 'https://api.andamantau.com/api/w/umkm/search/name',
                 [
@@ -97,14 +111,25 @@ class SellersController extends Controller
                     'checkboxStates' => $checkboxStates,
 
                 ]);
-            } else {
-                return abort(404);
+            }  else {
+                $errorMessages = [];
+               
+                if ($responseSearch->getStatusCode() !== 200) {
+                    $errorMessages[] = 'Error Search UMKM data: ' . $responseSearch->getReasonPhrase();
+                }
+
+               
+    
+                return view('pages.404-Search.index', ['errorMessage' => implode(', ', $errorMessages)]);
             }
         } catch (RequestException $e) {
-            return view('pages.404-Search.index');
-        }
-    }
-
+            Log::error('An error occurred: ' . $e->getMessage());
+            return view('pages.Fetch_Error.index', ['errorMessage' => 'Ada Kesalahan saat Mengambil data. Coba Lagi Nanti: ' . $e->getMessage()]);
+        } catch (ConnectException $e) {
+            Log::error('Connection error: ' . $e->getMessage());
+            return view('pages.Connection_Error.index', ['errorMessage' => 'Ada Kesalahan koneksi. Cek kembali koneksi internet Anda: ' . $e->getMessage()]);
+        
+    }}
 
     public function filter(Request $request)
     {
@@ -153,13 +178,25 @@ class SellersController extends Controller
 
                
             }
+            else {
+                $errorMessages = [];
+               
+                if ($response->getStatusCode() !== 200) {
+                    $errorMessages[] = 'Error Search UMKM data: ' . $response->getReasonPhrase();
+                }
+    
+               
+    
+                return view('pages.Fetch_Error.index', ['errorMessage' => implode(', ', $errorMessages)]);
+            }
         } catch (RequestException $e) {
-            return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
-
-        }
-
-
-    }
+            Log::error('An error occurred: ' . $e->getMessage());
+            return view('pages.Fetch_Error.index', ['errorMessage' => 'Ada Kesalahan saat Mengambil data. Coba Lagi Nanti: ' . $e->getMessage()]);
+        } catch (ConnectException $e) {
+            Log::error('Connection error: ' . $e->getMessage());
+            return view('pages.Connection_Error.index', ['errorMessage' => 'Ada Kesalahan koneksi. Cek kembali koneksi internet Anda: ' . $e->getMessage()]);
+        
+    }}
 
     public function filterCard(Request $request)
     {
@@ -205,13 +242,25 @@ class SellersController extends Controller
 
                 ]);
             }
-        } catch (RequestException $e) {
-            return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
+        else {
+            $errorMessages = [];
+           
+            if ($response->getStatusCode() !== 200) {
+                $errorMessages[] = 'Error Search UMKM data: ' . $response->getReasonPhrase();
+            }
 
+           
+
+            return view('pages.Fetch_Error.index', ['errorMessage' => implode(', ', $errorMessages)]);
         }
-
-
-    }
+    } catch (RequestException $e) {
+        Log::error('An error occurred: ' . $e->getMessage());
+        return view('pages.Fetch_Error.index', ['errorMessage' => 'Ada Kesalahan saat Mengambil data. Coba Lagi Nanti: ' . $e->getMessage()]);
+    } catch (ConnectException $e) {
+        Log::error('Connection error: ' . $e->getMessage());
+        return view('pages.Connection_Error.index', ['errorMessage' => 'Ada Kesalahan koneksi. Cek kembali koneksi internet Anda: ' . $e->getMessage()]);
+    
+}}
     /**
      * Display the specified resource.
      */
@@ -253,12 +302,25 @@ class SellersController extends Controller
 
                 ]);
             } else {
-                return abort(404);
+                $errorMessages = [];
+               
+                if ($responseUMKMPAll->getStatusCode() !== 200) {
+                    $errorMessages[] = 'Error Search UMKM data: ' . $responseUMKMPAll->getReasonPhrase();
+                }
+
+               
+    
+                return view('pages.404-Search.index', ['errorMessage' => implode(', ', $errorMessages)]);
             }
         } catch (RequestException $e) {
-            return view('pages.404.index');
-        }
-    }
+            Log::error('An error occurred: ' . $e->getMessage());
+            return view('pages.Fetch_Error.index', ['errorMessage' => 'Ada Kesalahan saat Mengambil data. Coba Lagi Nanti: ' . $e->getMessage()]);
+        } catch (ConnectException $e) {
+            Log::error('Connection error: ' . $e->getMessage());
+            return view('pages.Connection_Error.index', ['errorMessage' => 'Ada Kesalahan koneksi. Cek kembali koneksi internet Anda: ' . $e->getMessage()]);
+        
+    }}
+    
 
     /**
      * Show the form for editing the specified resource.
